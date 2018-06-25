@@ -18,4 +18,4 @@ deploy:
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_dsa
     - chmod 600 ~/.ssh/id_dsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - rsync -rav --delete dist/ www-data@limitunknown.com:8282/var/www/html/projects/pixagen/
+    - rsync -ravz -e 'ssh -p 8282' --delete dist/ www-data@limitunknown.com:/var/www/html/projects/pixagen/
