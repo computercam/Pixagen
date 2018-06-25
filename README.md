@@ -1,4 +1,4 @@
-# koolpix
+# pixagen
 
 > Digital image exploration utility.
 
