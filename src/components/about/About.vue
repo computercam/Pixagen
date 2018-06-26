@@ -1,15 +1,14 @@
 <template>
-  <app-navback :title="'About'" :route="'b0'"></app-navback>
+  <app-navbar :title="'About'" :route="'b0'"></app-navbar>
 </template>
 
 <script>
-import NavbarBack from '../NavbarBack'
+import Navbar from '../organisms/Navbar'
 
 export default {
   components: {
-    'app-navback': NavbarBack
-  },
-  computed: {}
+    'app-navbar': Navbar
+  }
 }
 </script>
 

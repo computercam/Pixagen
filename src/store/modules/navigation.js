@@ -1,19 +1,16 @@
 const state = {
   navbar: {
-    logo: 'PIXAGEN',
-    navicon: 'menu',
-    backicon: 'keyboard_arrow_left',
     items: {
       // home: {
       //   label: 'Home',
       //   icon: 'home',
       //   route: 'h0'
       // },
-      // browser: {
-      //   label: 'Browser',
-      //   icon: 'remove_red_eye',
-      //   route: 'b0'
-      // },
+      browser: {
+        label: 'Browser',
+        icon: 'remove_red_eye',
+        route: 'b0'
+      },
       walkthrough: {
         label: 'Help',
         icon: 'help',

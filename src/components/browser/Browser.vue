@@ -11,7 +11,7 @@
 	</div>
 </template>
 <script>
-import Navbar from './Navbar'
+import Navbar from '../organisms/Navbar'
 import Actionbar from './Actionbar'
 
 export default {

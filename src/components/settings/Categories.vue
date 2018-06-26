@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-navback :title="'Categories'" :route="'b1'"></app-navback>
+    <app-navbar :title="'Categories'" :route="'b1'"></app-navbar>
     <v-list>
       <v-subheader class="light-text">ACTIVE</v-subheader>
       <v-divider></v-divider>
@@ -38,11 +38,11 @@
 </template>
 
 <script>
-  import NavbarBack from '../NavbarBack'
+  import Navbar from '../organisms//Navbar'
   
   export default {
     components: {
-      'app-navback': NavbarBack
+      'app-navbar': Navbar
     },
     methods: {
       addCategory (category) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-navback :title="'Translate'" :route="'b1'"></app-navback>
+    <app-navbar :title="'Translate'" :route="'b1'"></app-navbar>
     <v-list two-line>
       <v-subheader>TRANSLATION OPTIONS</v-subheader>
       <v-divider></v-divider>
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import NavbarBack from '../NavbarBack'
+import Navbar from '../organisms/Navbar'
 
 export default {
   components: {
-    'app-navback': NavbarBack
+    'app-navbar': Navbar
   },
   data () {
     return {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-navback :title="'Blacklist'" :route="'b1'"></app-navback>
+    <app-navbar :title="'Blacklist'" :route="'b1'"></app-navbar>
     <v-card flat>
       <v-card-text>
         <v-container fluid>
@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import NavbarBack from '../NavbarBack'
+import Navbar from '../organisms/Navbar'
 
 export default {
   components: {
-    'app-navback': NavbarBack
+    'app-navbar': Navbar
   },
   computed: {
     blacklist: {
