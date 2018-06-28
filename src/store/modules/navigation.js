@@ -11,6 +11,11 @@ const state = {
         icon: 'remove_red_eye',
         route: 'b0'
       },
+      settings: {
+        label: 'Settings',
+        icon: 'settings',
+        route: 's0'
+      },
       walkthrough: {
         label: 'Help',
         icon: 'help',
@@ -33,7 +38,7 @@ const state = {
       },
       generate: {
         label: 'generate',
-        icon: 'redo',
+        icon: 'cached',
         route: 'b1'
       },
       liked: {

@@ -1,4 +1,8 @@
 const state = {
+  nav: {
+    title: 'Settings',
+    back: 'b0'
+  },
   categories: {
     active: null,
     excluded: [],
@@ -30,7 +34,7 @@ const getters = {
     let blacklist = ''
     state.keywords.blacklist.forEach((phrase, i, arr) => {
       blacklist += '+-"'
-      blacklist += phrase.replace(/[\s\-]+/gm, '+')
+      blacklist += phrase.replace(/[\s-]+/gm, '+')
       blacklist += '"'
     })
     return blacklist
@@ -119,6 +123,9 @@ const actions = {
       .replace(/[^a-zA-Z1-9,\s]+/gm, '')
       .split(',')
     commit('setBlacklist', payload)
+  },
+  setSettingsNav ({ state, commit }, payload) {
+    commit('setSettingsNav', payload)
   }
 }
 
@@ -158,6 +165,10 @@ const mutations = {
   },
   setBlacklist (state, payload) {
     state.keywords.blacklist = payload
+  },
+  setSettingsNav (state, payload) {
+    state.nav.title = payload.title
+    state.nav.back = payload.back
   }
 }
 

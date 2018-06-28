@@ -29,7 +29,7 @@ Vue.use(VueCordova)
 Vue.use(VueHead)
 Vue.use(VueMasonry)
 Vue.use(VueLazyload, {
-  throttleWait: 100
+  // throttleWait: 100
 })
 
 Vue.config.productionTip = false

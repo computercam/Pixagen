@@ -12,7 +12,7 @@
 </template>
 <script>
 import Navbar from '../organisms/Navbar'
-import Actionbar from './Actionbar'
+import Actionbar from '../organisms/Actionbar'
 
 export default {
   data () {

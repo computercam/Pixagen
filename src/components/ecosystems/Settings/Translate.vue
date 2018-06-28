@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-navbar :title="'Translate'" :route="'b1'"></app-navbar>
     <v-list two-line>
       <v-subheader>TRANSLATION OPTIONS</v-subheader>
       <v-divider></v-divider>
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-import Navbar from '../organisms/Navbar'
+import Navbar from '../../organisms/Navbar'
 
 export default {
   components: {
@@ -62,6 +61,9 @@ export default {
     language () {
       this.$store.dispatch('setTranslationLanguage', this.language)
     }
+  },
+  mounted () {
+    this.$store.dispatch('setSettingsNav', { title: 'Translate', back: 's0' })
   }
 }
 </script>

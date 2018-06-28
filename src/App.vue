@@ -11,9 +11,9 @@
 
 <script>
 import Vue from 'vue'
-import InfoOverlay from './components/InfoOverlay'
-import InfoSnackbar from './components/InfoSnackbar'
-import ShareDialog from './components/ShareDialog'
+import InfoOverlay from './components/organisms/InfoOverlay'
+import InfoSnackbar from './components/organisms/InfoSnackbar'
+import ShareDialog from './components/organisms/ShareDialog'
 
 export default {
   data () {
@@ -92,9 +92,6 @@ export default {
 .toolbar,
 .bottom-nav {
   z-index: 100;
-}
-.fav-active {
-  color: #26c6da !important;
 }
 body {
   padding-top: constant(safe-area-inset-top);

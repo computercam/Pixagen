@@ -1,16 +1,16 @@
 <template>
     <div>
-      <app-picboard v-if="exists" :pictures="liked.data" :refreshOnchange="false" :columnsBig="true"></app-picboard>
+      <app-picture-tiles v-if="exists" :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :refreshOnchange="false" :columnsBig="true"></app-picture-tiles>
       <app-blank v-else></app-blank>
     </div>
 </template>
 <script>
-import PictureBoard from './PictureBoard'
-import BlankPage from '../BlankPage'
+import PictureTiles from '../../organisms/PictureTiles'
+import Blank from '../../atoms/Blank'
 export default {
   components: {
-    'app-picboard': PictureBoard,
-    'app-blank': BlankPage
+    'app-picture-tiles': PictureTiles,
+    'app-blank': Blank
   },
   computed: {
     liked () {
@@ -26,6 +26,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('setNavShow', true)
     this.$store.dispatch('setActionbarSelected', 'liked')
   }
 }

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-navbar :title="'Blacklist'" :route="'b1'"></app-navbar>
     <v-card flat>
       <v-card-text>
         <v-container fluid>
@@ -28,7 +27,7 @@
 </template>
 
 <script>
-import Navbar from '../organisms/Navbar'
+import Navbar from '../../organisms/Navbar'
 
 export default {
   components: {
@@ -43,6 +42,9 @@ export default {
         this.$store.dispatch('setBlacklist', payload)
       }
     }
+  },
+  mounted () {
+    this.$store.dispatch('setSettingsNav', { title: 'Blacklist', back: 's0' })
   }
 }
 </script>

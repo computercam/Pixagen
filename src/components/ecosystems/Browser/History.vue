@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import BlankPage from '../BlankPage'
+import Blank from '../../atoms/Blank'
 export default {
   components: {
-    'app-blank': BlankPage
+    'app-blank': Blank
   },
   methods: {
     getWords (wordlist) {
@@ -70,6 +70,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('setNavShow', true)
     this.$store.dispatch('setActionbarSelected', 'history')
   }
 }

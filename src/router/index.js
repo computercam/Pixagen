@@ -1,17 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import About from '@/components/about/About'
-import Walkthrough from '@/components/walkthrough/Walkthrough'
-import Browser from '@/components/browser/Browser'
-import BrowserResults from '@/components/browser/Results'
-import BrowserLiked from '@/components/browser/Liked'
-import BrowserGenerate from '@/components/browser/Generate'
-import BrowserHistory from '@/components/browser/History'
-import Settings from '@/components/settings/Settings'
-import SettingsBlacklist from '@/components/settings/Blacklist'
-import SettingsTranslate from '@/components/settings/Translate'
-import SettingsCategories from '@/components/settings/Categories'
+
+import Landing from '@/components/environments/Landing'
+import About from '@/components/environments/About'
+import Walkthrough from '@/components/environments/Walkthrough'
+import Browser from '@/components/environments/Browser'
+import Settings from '@/components/environments/Settings'
+
+import BrowserResults from '@/components/ecosystems/Browser/Results'
+import BrowserLiked from '@/components/ecosystems/Browser/Liked'
+import BrowserGenerate from '@/components/ecosystems/Browser/Generate'
+import BrowserHistory from '@/components/ecosystems/Browser/History'
+
+import SettingsGeneral from '@/components/ecosystems/Settings/General'
+import SettingsBlacklist from '@/components/ecosystems/Settings/Blacklist'
+import SettingsTranslate from '@/components/ecosystems/Settings/Translate'
+import SettingsCategories from '@/components/ecosystems/Settings/Categories'
 
 Vue.use(Router)
 
@@ -20,8 +24,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'l0',
+      component: Landing
     },
     {
       path: '/about',
@@ -33,7 +37,7 @@ export default new Router({
       component: Browser,
       children: [
         { path: '', name: 'b0', component: BrowserResults },
-        { path: 'regenerate', name: 'b1', component: BrowserGenerate },
+        { path: 'generate', name: 'b1', component: BrowserGenerate },
         { path: 'liked', name: 'b2', component: BrowserLiked },
         { path: 'history', name: 'b3', component: BrowserHistory }
       ]
@@ -42,6 +46,7 @@ export default new Router({
       path: '/settings',
       component: Settings,
       children: [
+        { path: '', name: 's0', component: SettingsGeneral },
         { path: 'blacklist', name: 's1', component: SettingsBlacklist },
         { path: 'translate', name: 's2', component: SettingsTranslate },
         { path: 'categories', name: 's3', component: SettingsCategories }

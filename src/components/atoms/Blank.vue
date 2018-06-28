@@ -19,7 +19,7 @@
   .logo-faded {
     height: 60%;
     width: 60%;
-    background-image: url(../assets/logo/faded.svg), none;
+    background-image: url(../../assets/logo/faded.svg), none;
     background-position: center;
     background-size: contain;
     opacity: 0.5;

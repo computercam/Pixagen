@@ -8,6 +8,7 @@ import generate from './modules/generate'
 import overlay from './modules/overlay'
 import snackbar from './modules/snackbar'
 import share from './modules/share'
+import layout from './modules/layout'
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -19,34 +20,7 @@ export const store = new Vuex.Store({
     generate,
     overlay,
     snackbar,
-    share
-  },
-  state: {
-    picboardShow: false, // Used to prevent lag when loading picboard
-    navShow: true
-  },
-  getters: {
-    getPicboardShow (state) {
-      return state.picboardShow
-    },
-    getNavShow (state) {
-      return state.navShow
-    }
-  },
-  actions: {
-    setPicboardShow ({ state, commit }, payload) {
-      commit('setPicboardShow', payload)
-    },
-    setNavShow ({ state, commit }, payload) {
-      commit('setNavShow', payload)
-    }
-  },
-  mutations: {
-    setPicboardShow (state, payload) {
-      state.picboardShow = payload
-    },
-    setNavShow (state, payload) {
-      state.navShow = payload
-    }
+    share,
+    layout
   }
 })

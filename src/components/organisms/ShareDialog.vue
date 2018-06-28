@@ -27,7 +27,7 @@
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-pinterest>
-              <span class="subheading dialog-social-name">Pinterestk</span>
+              <span class="subheading dialog-social-name">Pinterest</span>
             </p>
             <p>
               <vue-goodshare-tumblr 

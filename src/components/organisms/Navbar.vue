@@ -18,8 +18,8 @@
 
 <script>
 import { routerHelpers } from '../../router/routerHelpers'
-import Menu from '../atoms/menu'
-import Logo from '../atoms/logo'
+import Menu from '../molecules/menu'
+import Logo from '../atoms/Logo'
 
 export default {
   components: {
