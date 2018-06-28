@@ -9,6 +9,7 @@ import overlay from './modules/overlay'
 import snackbar from './modules/snackbar'
 import share from './modules/share'
 import layout from './modules/layout'
+import infinite from './modules/infinite'
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -21,6 +22,7 @@ export const store = new Vuex.Store({
     overlay,
     snackbar,
     share,
-    layout
+    layout,
+    infinite
   }
 })

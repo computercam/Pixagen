@@ -26,10 +26,6 @@
         type: Array,
         required: true
       },
-      refresh: {
-        type: Boolean,
-        default: false
-      },
       big: {
         type: Boolean,
         default: false
@@ -43,7 +39,21 @@
         default: false
       }
     },
+    data () {
+      return {
+        list: []
+      }
+    },
     methods: {
+      lazyScroll ($state) {
+        setTimeout(() => {
+          let start = this.list.length
+          let end = this.list.length + 20
+          let temp = this.pictures.slice(start, end)
+          this.list = this.list.concat(temp)
+          $state.loaded()
+        }, 1000)
+      },
       getUID () {
         return window.btoa(Math.floor(Math.random() * (100 ** 8))).replace(/=/gm, '')
       },

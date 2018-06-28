@@ -11,7 +11,6 @@ import router from './router'
 import { store } from './store/index.js'
 import VueMasonry from 'vue-masonry-css'
 import colors from 'vuetify/es5/util/colors'
-import VueLazyload from 'vue-lazyload'
 
 Vue.use(Vuetify, {
   theme: {
@@ -28,9 +27,6 @@ Vue.use(Vuetify, {
 Vue.use(VueCordova)
 Vue.use(VueHead)
 Vue.use(VueMasonry)
-Vue.use(VueLazyload, {
-  // throttleWait: 100
-})
 
 Vue.config.productionTip = false
 
