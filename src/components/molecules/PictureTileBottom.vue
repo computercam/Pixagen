@@ -22,15 +22,17 @@
         <v-icon class="dark-text">open_in_new</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn depressed round color="primary" class="btn-explore" v-if="item.rimg" @click.native="explore()" >
-        <v-icon small left>image_search</v-icon>
-        Explore
-      </v-btn>
+      <app-explore-btn class="btn-explore" :item="item" @explore="explore">
+      </app-explore-btn>
     </v-card-actions>
   </div>
 </template>
 <script>
+  import ExploreBtn from '../atoms/ExploreBtn'
   export default {
+    components: {
+      'app-explore-btn': ExploreBtn
+    },
     props: {
       item: {
         type: Object,
@@ -48,8 +50,8 @@
       toggleFav () {
         this.$emit('toggleFav', null)
       },
-      explore () {
-        this.$emit('explore', null)
+      explore (payload) {
+        this.$emit('explore', payload)
       }
     }
   }

@@ -1,16 +1,26 @@
 import router from '../../router/index'
 
-const state = {
-  max: 50,
+let storage = window.localStorage.history
+
+const template = {
+  max: 40,
   total: 0,
   index: 0,
   data: [],
   lastGenerate: null
 }
 
+let state
+
+if (typeof storage === 'undefined') {
+  state = template
+} else {
+  state = JSON.parse(storage)
+}
+
 const getters = {
   historyExists (state) {
-    return typeof state.data[0] !== 'undefined'
+    return state.total > 0
   },
   historyCurrent (state) {
     return state.data[state.index]
@@ -26,14 +36,22 @@ const getters = {
         let string = item.keywords.sort().toString()
         let criteria = options.words.sort().toString()
         if (string === criteria) {
-          if (options.rimg !== false) {
-            if (item.rimg === options.rimg) {
-              exists = i
-              break
-            }
-          } else {
+          if (options.sbi === false && options.rimg === false) {
             exists = i
             break
+          } else {
+            if (options.rimg !== false) {
+              if (item.rimg === options.rimg) {
+                exists = i
+                break
+              }
+            }
+            if (options.sbi !== false) {
+              if (item.sbi === options.sbi) {
+                exists = i
+                break
+              }
+            }
           }
         }
         i++
@@ -53,6 +71,7 @@ const actions = {
     } else {
       commit('historyClean')
     }
+    commit('historySave')
   },
   historyTimetravel ({ state, commit }, payload) {
     commit('historyAdd', state.data[payload])
@@ -80,6 +99,9 @@ const mutations = {
   },
   historyLastGenerate (state, payload) {
     state.lastGenerate = payload
+  },
+  historySave (state) {
+    window.localStorage.setItem('history', JSON.stringify(state))
   }
 }
 

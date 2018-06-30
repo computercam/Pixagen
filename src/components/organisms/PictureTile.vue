@@ -53,8 +53,8 @@
       toggleFav () {
         this.$store.dispatch('toggleFav', this.item)
       },
-      explore () {
-        this.$store.dispatch('generateNew', { option: 3, rimg: this.item.rimg })
+      explore (payload) {
+        this.$store.dispatch('generateNew', { option: payload.option, [payload.type]: payload.criteria })
       }
     },
     computed: {

@@ -49,6 +49,15 @@
       //     $state.loaded()
       //   }, 1000)
       // },
+      // getTitle () {
+      //   let title = this.getWords(this.current.keywords)
+      //   if (this.current.rimg || this.current.sbi) {
+      //     if (this.current.metadata[0].pt.length > 0) {
+      //       title = this.current.metadata[0].pt
+      //     }
+      //   }
+      //   return title
+      // },
       getWords (wordlist) {
         let str = ''
         wordlist.forEach((item, index, array) => {
@@ -59,7 +68,7 @@
       },
       quickGenerate () {
         let last = this.$store.getters.historyLastGenerate
-        if (last.option === 3) {
+        if (last.option === 3 || last.option === 4) {
           last.option = 1
           last.rimg = ''
         }
@@ -77,8 +86,8 @@
         return this.$store.getters.contentBuffer
       }
     },
-    // mounted () {
-    //   this.stream = this.ifinite.pool.slice(0, 10)
-    // }
+    mounted () {
+      // this.stream = this.ifinite.pool.slice(0, 10)
+    }
   }
 </script>

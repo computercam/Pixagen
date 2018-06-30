@@ -12,16 +12,21 @@ const getters = {
     return state.wordlists
   },
   getQueryString: (state, getters, rootState, rootGetters) => options => {
-    let query = state.metadataAPI + '?keywords='
-    options.words.forEach((word, i, arr) => {
-      query += word
-      if (i !== arr.length - 1) {
-        query += '+'
+    let query = state.metadataAPI
+    if (typeof options.sbi !== 'undefined') {
+      query += '?sbi=' + options.sbi
+    } else {
+      query += '?keywords='
+      options.words.forEach((word, i, arr) => {
+        query += word
+        if (i !== arr.length - 1) {
+          query += '+'
+        }
+      })
+      query += rootGetters.getBlacklist
+      if (typeof options.rimg !== 'undefined') {
+        query += '&rimg=' + options.rimg
       }
-    })
-    query += rootGetters.getBlacklist
-    if (typeof options.rimg !== 'undefined') {
-      query += '&rimg=' + options.rimg
     }
     if (rootGetters.getSettings.keywords.safeMode) {
       query += '&safe=active'
@@ -178,6 +183,7 @@ const actions = {
     let words
     let query
     let rimg = false
+    let sbi = false
     dispatch('historyLastGenerate', payload)
     switch (payload.option) {
       case 0:
@@ -226,7 +232,7 @@ const actions = {
         })
         break
       case 3:
-        // Explore
+        // Explore by rimg
         categories = current.categories
         words = current.keywords
         rimg = payload.rimg
@@ -235,19 +241,36 @@ const actions = {
           rimg: rimg
         })
         break
+      case 4:
+        // Explore by sbi
+        categories = current.categories
+        words = current.keywords
+        sbi = payload.sbi
+        query = getters.getQueryString({
+          sbi: sbi
+        })
+        break
     }
     dispatch('getImages', {
       categories: categories,
       words: words,
       query: query,
-      rimg: rimg
+      rimg: rimg,
+      sbi: sbi
     })
   },
   getImages ({ state, getters, dispatch, rootGetters }, payload) {
+    // Search by image can take longer to process
+    // increase the timeout to prevent failure
+    let timeout = 10
+    if (payload.sbi !== false) {
+      timeout = 20
+    }
     // Checks if matching data already exists in history
     let exists = rootGetters.historyValidateExists({
       words: payload.words,
-      rimg: payload.rimg
+      rimg: payload.rimg,
+      sbi: payload.sbi
     })
     // If nothing was found, get new images
     if (exists === false) {
@@ -256,15 +279,26 @@ const actions = {
         loading: true,
         message: 'LOADING IMAGES'
       })
-      xhr(payload.query, 'json', 10, 5)
+      xhr(payload.query, 'json', timeout, 5)
         .then(response => {
-          dispatch('historyAdd', {
-            categories: payload.categories,
-            keywords: payload.words,
-            query: payload.query,
-            rimg: payload.rimg,
-            metadata: response.data
-          })
+          if (response.data.length > 0) {
+            dispatch('historyAdd', {
+              categories: payload.categories,
+              keywords: payload.words,
+              query: payload.query,
+              rimg: payload.rimg,
+              sbi: payload.sbi,
+              metadata: response.data
+            })
+          } else {
+            dispatch('setSnackbar', {
+              active: true,
+              message: 'Sorry, no matching results were found for that image',
+              color: 'error',
+              mode: 'multi',
+              timeout: 5000
+            })
+          }
           dispatch('setOverlay', {
             active: false
           })

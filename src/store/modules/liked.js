@@ -1,11 +1,22 @@
 // TODO: Add a feature for keeping track of downloaded files as well as liked, Currently only tracks likes
 // TODO: Ability to favorite categories & keyword pairs, currently not supported
-// TODO: Better implementation of favorites feature. As the app grows, looping through every favorited item to determine if it was liked is sub optimal at best
-const state = {
+
+let storage = window.localStorage.liked
+
+const template = {
   favs: {
     data: []
   }
 }
+
+let state
+
+if (typeof storage === 'undefined') {
+  state = template
+} else {
+  state = JSON.parse(storage)
+}
+
 const getters = {
   isFav: state => url => {
     return state.favs.data.findIndex(key => {
@@ -27,6 +38,7 @@ const actions = {
     } else {
       commit('addFav', payload)
     }
+    commit('saveFav')
   }
 }
 const mutations = {
@@ -37,6 +49,9 @@ const mutations = {
   // Payload is index of favorited item in data
   delFav (state, payload) {
     state.favs.data.splice(payload, 1)
+  },
+  saveFav (state) {
+    window.localStorage.setItem('liked', JSON.stringify(state))
   }
 }
 

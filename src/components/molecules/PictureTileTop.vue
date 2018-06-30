@@ -4,10 +4,8 @@
       <div v-if="hover" class="picture-tile-actions animated fadeIn">
         <v-layout class="fill-height" row wrap align-content-space-between>
           <v-flex xs12>
-            <v-btn depressed round color="primary" class="btn-explore" v-if="item.rimg" @click.native="explore()" >
-              <v-icon small left>image_search</v-icon>
-              Explore
-            </v-btn>
+            <app-explore-btn class="btn-explore" :item="item" @explore="explore">
+            </app-explore-btn>
           </v-flex>
           <v-flex xs12>
             <v-btn depressed icon large class="btn-favorite" @click.native="toggleFav()">
@@ -24,10 +22,12 @@
 </template>
 <script>
   import Picture from '../atoms/Picture'
+  import ExploreBtn from '../atoms/ExploreBtn'
 
   export default {
     components: {
-      'app-picture': Picture
+      'app-picture': Picture,
+      'app-explore-btn': ExploreBtn
     },
     props: {
       item: {
@@ -51,8 +51,8 @@
       toggleFav () {
         this.$emit('toggleFav', null)
       },
-      explore () {
-        this.$emit('explore', null)
+      explore (payload) {
+        this.$emit('explore', payload)
       },
       imageHover (event) {
         if (this.hover) {
@@ -96,7 +96,7 @@
   
   .btn-explore {
     float:right; 
-    margin: 10px; 
+    margin: 8px; 
     z-index: 11; 
   }
   
