@@ -1,6 +1,8 @@
 <template>
     <div>
-      <app-picture-tiles v-if="exists" :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+      <template v-if="exists">
+        <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+      </template>
       <app-blank v-else></app-blank>
     </div>
 </template>
@@ -31,5 +33,5 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 </style>

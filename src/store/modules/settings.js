@@ -1,4 +1,7 @@
-const state = {
+
+const storage = window.localStorage.settings
+
+const template = {
   nav: {
     title: 'Settings',
     back: 'b0'
@@ -26,11 +29,20 @@ const state = {
     // }
   }
 }
+
+let state
+
+if (typeof storage === 'undefined') {
+  state = template
+} else {
+  state = JSON.parse(storage)
+}
+
 const getters = {
   getSettings (state) {
     return state
   },
-  getBlacklist (state) {
+  getBlacklistQuery (state) {
     let blacklist = ''
     state.keywords.blacklist.forEach((phrase, i, arr) => {
       blacklist += '+-"'
@@ -49,21 +61,28 @@ const actions = {
       }
     }
     commit('toggleUnique')
+    commit('settingsSave')
   },
   toggleSafemode ({ state, commit }) {
     commit('toggleSafemode')
+    commit('settingsSave')
   },
   toggleSingle ({ state, commit }) {
     commit('toggleSingle')
+    commit('settingsSave')
   },
   toggleTranslation ({ state, commit }) {
     commit('toggleTranslation')
+    commit('settingsSave')
   },
   setTranslationLanguage ({ state, commit }, payload) {
     commit('setTranslationLanguage', payload)
+    commit('settingsSave')
   },
   setActiveCategories ({ state, commit }, payload) {
     commit('setActiveCategories', payload)
+    commit('diffActiveExcluded')
+    commit('settingsSave')
   },
   addActiveCategory ({ state, commit }, payload) {
     let index = state.categories.excluded.findIndex(key => {
@@ -71,6 +90,7 @@ const actions = {
     })
     commit('removeExcludedCategory', index)
     commit('addActiveCategory', payload)
+    commit('settingsSave')
   },
   removeActiveCategory ({ state, commit, dispatch }, payload) {
     if (
@@ -83,6 +103,7 @@ const actions = {
       })
       commit('removeActiveCategory', index)
       commit('addExcludedCategory', payload)
+      commit('settingsSave')
     } else {
       dispatch('setSnackbar', {
         active: true,
@@ -109,6 +130,7 @@ const actions = {
       })
     } else {
       commit('setKeywordAmount', payload)
+      commit('settingsSave')
     }
   },
   setBlacklist ({ state, commit }, payload) {
@@ -123,6 +145,7 @@ const actions = {
       .replace(/[^a-zA-Z1-9,\s]+/gm, '')
       .split(',')
     commit('setBlacklist', payload)
+    commit('settingsSave')
   },
   setSettingsNav ({ state, commit }, payload) {
     commit('setSettingsNav', payload)
@@ -169,6 +192,12 @@ const mutations = {
   setSettingsNav (state, payload) {
     state.nav.title = payload.title
     state.nav.back = payload.back
+  },
+  diffActiveExcluded () {
+    state.categories.active = state.categories.active.filter((val) => !state.categories.excluded.includes(val))
+  },
+  settingsSave (state) {
+    window.localStorage.setItem('settings', JSON.stringify(state))
   }
 }
 

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="exists">
+    <template v-if="exists">
       <app-picture-tiles-inf :current="current"></app-picture-tiles-inf>
-    </div>
+    </template>
     <app-blank v-else></app-blank>
   </div>
 </template>

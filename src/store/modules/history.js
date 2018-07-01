@@ -1,6 +1,6 @@
 import router from '../../router/index'
 
-let storage = window.localStorage.history
+const storage = window.localStorage.history
 
 const template = {
   max: 40,
@@ -79,9 +79,11 @@ const actions = {
     router.push({
       name: 'b0'
     })
+    commit('historySave')
   },
   historyLastGenerate ({ state, commit }, payload) {
     commit('historyLastGenerate', payload)
+    commit('historySave')
   }
 }
 const mutations = {

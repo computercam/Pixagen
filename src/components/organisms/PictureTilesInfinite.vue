@@ -91,3 +91,8 @@
     }
   }
 </script>
+<style scoped>
+  .view-more {
+    max-width: 500px;
+  }
+</style>

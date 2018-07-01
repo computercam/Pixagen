@@ -1,7 +1,7 @@
 // TODO: Add a feature for keeping track of downloaded files as well as liked, Currently only tracks likes
 // TODO: Ability to favorite categories & keyword pairs, currently not supported
 
-let storage = window.localStorage.liked
+const storage = window.localStorage.liked
 
 const template = {
   favs: {

@@ -96,7 +96,7 @@
   
   .btn-explore {
     float:right; 
-    margin: 8px; 
+    margin: 4px; 
     z-index: 11; 
   }
   

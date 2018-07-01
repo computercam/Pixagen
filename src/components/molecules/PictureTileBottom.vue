@@ -67,4 +67,7 @@
   .liked {
     color: #26c6da !important;
   }
+  .btn-explore {
+    margin: 8px; 
+  }
 </style>
