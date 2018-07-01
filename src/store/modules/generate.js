@@ -53,8 +53,6 @@ const getters = {
       query += '&retain=' + retain
     }
 
-    console.log(query)
-
     return query
   },
   getRandomCategories: (state, getters, rootState, rootGetters) => options => {
@@ -220,7 +218,8 @@ const actions = {
           keep: false
         })
         query = getters.getQueryString({
-          words: words
+          words: words,
+          categories: categories
         })
         break
       case 1:
@@ -259,8 +258,8 @@ const actions = {
         break
       case 3:
         // Explore by rimg
-        categories = current.categories
-        words = current.keywords
+        categories = payload.categories
+        words = payload.keywords
         rimg = payload.rimg
         query = getters.getQueryString({
           rimg: rimg,
@@ -270,8 +269,8 @@ const actions = {
         break
       case 4:
         // Explore by sbi
-        categories = current.categories
-        words = current.keywords
+        categories = payload.categories
+        words = payload.keywords
         sbi = payload.sbi
         query = getters.getQueryString({
           sbi: sbi,
