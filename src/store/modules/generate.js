@@ -12,25 +12,49 @@ const getters = {
     return state.wordlists
   },
   getQueryString: (state, getters, rootState, rootGetters) => options => {
-    let query = state.metadataAPI
-    if (typeof options.sbi !== 'undefined') {
-      query += '?sbi=' + options.sbi
-    } else {
-      query += '?keywords='
+    let wordsBool = typeof options.words !== 'undefined'
+    let catsBool = typeof options.categories !== 'undefined'
+    let rimgBool = typeof options.rimg !== 'undefined'
+    let sbiBool = typeof options.sbi !== 'undefined'
+    let safeBool = rootGetters.getSettings.keywords.safeMode
+
+    let query = state.metadataAPI + '?'
+
+    if (wordsBool && !sbiBool) {
+      query += '&keywords='
       options.words.forEach((word, i, arr) => {
         query += word
         if (i !== arr.length - 1) {
           query += '+'
         }
       })
-      query += rootGetters.getBlacklist
-      if (typeof options.rimg !== 'undefined') {
-        query += '&rimg=' + options.rimg
-      }
+      query += rootGetters.getBlacklistQuery
     }
-    if (rootGetters.getSettings.keywords.safeMode) {
+
+    if (rimgBool && !sbiBool) {
+      query += '&rimg=' + options.rimg
+    }
+
+    if (sbiBool) {
+      query += '&sbi=' + options.sbi
+    }
+
+    if (safeBool) {
       query += '&safe=active'
     }
+
+    if (wordsBool && catsBool) {
+      let retain = {
+        okeys: options.words,
+        ocats: options.categories
+      }
+      retain = JSON.stringify(retain)
+      retain = encodeURIComponent(retain)
+      query += '&retain=' + retain
+    }
+
+    console.log(query)
+
     return query
   },
   getRandomCategories: (state, getters, rootState, rootGetters) => options => {
@@ -207,7 +231,8 @@ const actions = {
           keep: false
         })
         query = getters.getQueryString({
-          words: words
+          words: words,
+          categories: categories
         })
         break
       case 2:
@@ -228,7 +253,8 @@ const actions = {
           keep: keep.words
         })
         query = getters.getQueryString({
-          words: words
+          words: words,
+          categories: categories
         })
         break
       case 3:
@@ -237,8 +263,9 @@ const actions = {
         words = current.keywords
         rimg = payload.rimg
         query = getters.getQueryString({
+          rimg: rimg,
           words: words,
-          rimg: rimg
+          categories: categories
         })
         break
       case 4:
@@ -247,7 +274,9 @@ const actions = {
         words = current.keywords
         sbi = payload.sbi
         query = getters.getQueryString({
-          sbi: sbi
+          sbi: sbi,
+          words: words,
+          categories: categories
         })
         break
     }
