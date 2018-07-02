@@ -33,8 +33,10 @@ const getters = {
     if (state.data.length > 0) {
       let i = 0
       for (let item of state.data) {
-        let string = item.keywords.sort().toString()
-        let criteria = options.words.sort().toString()
+        let string = item.keywords.slice()
+        string = string.sort().toString()
+        let criteria = options.words.slice()
+        criteria = criteria.sort().toString()
         if (string === criteria) {
           if (options.sbi === false && options.rimg === false) {
             exists = i
