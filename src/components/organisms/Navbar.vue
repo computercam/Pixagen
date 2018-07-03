@@ -2,9 +2,9 @@
   <div>
     <v-toolbar :color="color" :dense="!noRoute" fixed flat>
       <v-toolbar-title v-if="noRoute">
-        <app-logo></app-logo>
+        <app-logo class="pointer" @click.native="quickGenerate()"></app-logo>
       </v-toolbar-title>
-      <v-icon class="back-icon" v-else dark @click="nav(route)">
+      <v-icon class="pointer" v-else dark @click="nav(route)">
           keyboard_arrow_left
       </v-icon>      
       <v-spacer></v-spacer>
@@ -28,6 +28,16 @@ export default {
   },
   mixins: [routerHelpers],
   props: ['title', 'route'],
+  methods: {
+    quickGenerate () {
+      let last = this.$store.getters.historyLastGenerate
+      if (last.option === 3 || last.option === 4) {
+        last.option = 1
+        last.rimg = ''
+      }
+      this.$store.dispatch('generateNew', last)
+    }
+  },
   computed: {
     noRoute () {
       return typeof this.route === 'undefined'
@@ -48,7 +58,7 @@ export default {
   .subheading {
     color: white !important;
   }
-  .back-icon {
+  .pointer {
     cursor: pointer;
   }
 </style>
