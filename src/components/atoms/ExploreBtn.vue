@@ -4,13 +4,15 @@
       <v-icon small left>image_search</v-icon>
       Explore
     </v-btn>
-    <v-btn v-else depressed round color="white" class="invert-text btn-explore" @click.native="explore({ type: 'sbi', option: 4, criteria: item.ou })" >
+
+    <!-- <v-btn v-else depressed round color="white" class="invert-text btn-explore" @click.native="explore({ type: 'sbi', option: 4, criteria: item.ou })" >
       <v-icon class="invert-text" small left>image_search</v-icon>
       Explore
-    </v-btn>
+    </v-btn> -->
   </div>
 </template>
 <script>
+  // TODO: Search by image feature needs refinement before it can be properly implemented
   export default {
     props: {
       item: {
