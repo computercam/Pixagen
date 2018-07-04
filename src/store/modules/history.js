@@ -3,7 +3,7 @@ import router from '../../router/index'
 const storage = window.localStorage.history
 
 const template = {
-  max: 40,
+  max: 50,
   total: 0,
   index: 0,
   data: [],
@@ -66,7 +66,7 @@ const getters = {
   }
 }
 const actions = {
-  historyAdd ({ state, commit }, payload) {
+  historyAdd ({ state, commit, dispatch }, payload) {
     commit('historyAdd', payload)
     if (state.total < state.max) {
       commit('historyIncrement')

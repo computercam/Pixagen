@@ -69,6 +69,9 @@ export default {
 </script>
 
 <style>
+  body {
+    overflow-anchor: none !important;
+  }
  .menu__content {
    border-radius: 10px !important;
  }
