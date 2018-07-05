@@ -1,14 +1,16 @@
 <template>
-  <div class="results-container">
+  <div>
     <template v-if="exists">
-      <v-layout row wrap class="results-header" :style="{ padding: margins }">
-        <v-flex xs12>
-          <h1 class="dark-text font-weight-regular">{{ getWords(current.keywords) }}</h1>
-          <h3 class="light-text font-weight-regular">{{ getWords(current.categories) }}</h3>
-        </v-flex>
-      </v-layout>
-      <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true">
-      </app-picture-tiles>
+      <div class="results-container">
+        <v-layout row wrap class="results-header" :style="{ padding: margins }">
+          <v-flex xs12>
+            <h1 class="dark-text font-weight-regular">{{ getWords(current.keywords) }}</h1>
+            <h3 class="light-text font-weight-regular">{{ getWords(current.categories) }}</h3>
+          </v-flex>
+        </v-layout>
+        <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true">
+        </app-picture-tiles>
+      </div>
     </template>
     <app-blank v-else></app-blank>
   </div>

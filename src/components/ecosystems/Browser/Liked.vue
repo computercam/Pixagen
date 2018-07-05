@@ -1,7 +1,9 @@
 <template>
-    <div class="liked-container">
+    <div>
       <template v-if="exists">
-        <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+        <div class="liked-container">
+          <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+        </div>
       </template>
       <app-blank v-else></app-blank>
     </div>

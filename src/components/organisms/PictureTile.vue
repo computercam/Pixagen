@@ -60,7 +60,7 @@
         this.$store.dispatch('toggleFav', this.item)
       },
       explore (payload) {
-        this.$store.dispatch('generateNew', { 
+        this.$store.dispatch('generateNew', {
           option: payload.option,
           [payload.type]: payload.criteria,
           keywords: this.item.okeys,
