@@ -1,6 +1,6 @@
 <template>
   <div class="svg-bg-container">
-    <svg class="logo-faded" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    <svg class="faded" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
       xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="svg2815" version="1.1" viewBox="0 0 98.728584 82.446037" sodipodi:docname="faded.svg" inkscape:version="0.92.2 2405546, 2018-03-11">
       <g id="layer1" transform="translate(-51.933325,-38.818646)">
@@ -83,12 +83,9 @@
     align-items: center;
   }
 
-  .logo-faded {
+  .faded {
     height: 60%;
     width: 60%;
-    background-image: url(../../assets/logo/faded.svg), none;
-    background-position: center;
-    background-size: contain;
     opacity: 0.5;
   }
 </style>
