@@ -9,12 +9,12 @@
           <v-list-tile-sub-title class="light-text">Amount of keywords to generate</v-list-tile-sub-title>
         </v-list-tile-content>
         <v-list-tile-action>
-          <div class="kw-counter darker-text">{{ keywordAmount }}</div>
+          <div class="kw-counter dark-text">{{ keywordAmount }}</div>
         </v-list-tile-action>
       </v-list-tile>
       <v-list-tile>
         <v-flex xs12>
-          <v-slider min="0" ticks color="primary" :max="settings.keywords.max" v-model="keywordAmount"></v-slider>
+          <v-slider @start="slider(true)" @end="slider(false)" min="0" color="primary" :max="settings.keywords.max" v-model="keywordAmount"></v-slider>
         </v-flex>
       </v-list-tile>
       </app-tile-slider>
@@ -106,8 +106,12 @@
   export default {
     mixins: [routerHelpers],
     methods: {
-      test () {
-        console.log(this)
+      slider (active) {
+        if (active) {
+          document.querySelector('.kw-counter').classList.add('sliding')
+        } else {
+          document.querySelector('.kw-counter').classList.remove('sliding')
+        }
       }
     },
     computed: {
@@ -155,3 +159,12 @@
     }
   }
 </script>
+<style scoped>
+  .kw-counter {
+    margin-right: 8px;
+  }
+  .sliding {
+    font-size: 14pt;
+    font-weight: bold;
+  }
+</style>

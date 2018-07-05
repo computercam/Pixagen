@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="liked-container">
       <template v-if="exists">
         <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
       </template>
@@ -34,4 +34,7 @@ export default {
 }
 </script>
 <style scoped>
+  .liked-container {
+    padding-top: 20px !important;
+  }
 </style>

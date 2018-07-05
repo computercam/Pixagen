@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar :color="color" :dense="!noRoute" fixed flat>
+    <v-toolbar :color="color" :dense="!noRoute" fixed flat class="on-top">
       <v-toolbar-title v-if="noRoute">
         <app-logo class="pointer" @click.native="quickGenerate()"></app-logo>
       </v-toolbar-title>
@@ -30,12 +30,7 @@ export default {
   props: ['title', 'route'],
   methods: {
     quickGenerate () {
-      let last = this.$store.getters.historyLastGenerate
-      if (last.option === 3 || last.option === 4) {
-        last.option = 1
-        last.rimg = ''
-      }
-      this.$store.dispatch('generateNew', last)
+      this.$store.dispatch('quickGenerate')
     }
   },
   computed: {
@@ -55,6 +50,9 @@ export default {
 </script>
 
 <style scoped>
+  .on-top {
+    z-index: 100 !important;
+  }
   .subheading {
     color: white !important;
   }

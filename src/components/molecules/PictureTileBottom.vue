@@ -22,7 +22,7 @@
         <v-icon class="dark-text">open_in_new</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <app-explore-btn class="btn-explore" :item="item" @explore="explore">
+      <app-explore-btn v-if="showExplore" class="btn-explore" :item="item" @explore="explore">
       </app-explore-btn>
     </v-card-actions>
   </div>
@@ -41,6 +41,10 @@
       fav: {
         type: Boolean,
         default: false
+      },
+      showExplore: {
+        type: Boolean,
+        default: true
       }
     },
     methods: {

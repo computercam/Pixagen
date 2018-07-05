@@ -4,7 +4,7 @@
       <div v-if="hover" class="picture-tile-actions animated fadeIn">
         <v-layout class="fill-height" row wrap align-content-space-between>
           <v-flex xs12>
-            <app-explore-btn class="btn-explore" :item="item" @explore="explore">
+            <app-explore-btn v-if="showExplore" class="btn-explore" :item="item" @explore="explore">
             </app-explore-btn>
           </v-flex>
           <v-flex xs12>
@@ -45,6 +45,10 @@
       fav: {
         type: Boolean,
         default: false
+      },
+      showExplore: {
+        type: Boolean,
+        default: true
       }
     },
     methods: {
@@ -92,16 +96,17 @@
     z-index: 10;
     height: 100%;
     width: 100%;
+    top: 0;
   }
   
   .btn-explore {
     float:right; 
     margin: 4px; 
-    z-index: 11; 
+    z-index: 21; 
   }
   
   .btn-favorite {
-    z-index: 11
+    z-index: 21
   }
 
   .liked {

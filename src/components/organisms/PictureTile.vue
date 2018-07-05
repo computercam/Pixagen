@@ -5,12 +5,14 @@
           :hover="hover"
           :hAdjust="hAdjust"
           :fav="isFav"
+          :showExplore="showExplore"
           @explore="explore"
           @toggleFav="toggleFav"
-        ></app-picture-tile-top>
-        <app-picture-tile-bottom 
+          ></app-picture-tile-top>
+          <app-picture-tile-bottom 
           :item="item"
           :fav="isFav"
+          :showExplore="showExplore"
           v-if="showBottom"
           @share="share"
           @explore="explore"
@@ -44,6 +46,10 @@
       hAdjust: {
         type: Number,
         default: 10
+      },
+      showExplore: {
+        type: Boolean,
+        default: true
       }
     },
     methods: {

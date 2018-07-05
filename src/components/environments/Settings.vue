@@ -24,7 +24,7 @@
       }
     },
     mounted () {
-      this.spaceTop = document.querySelector('.toolbar__content').clientHeight
+      this.spaceTop = document.querySelector('.v-toolbar').clientHeight
     }
   }
 </script>

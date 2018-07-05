@@ -31,4 +31,7 @@
   .invert-text {
     color: #7b7594
   }
+  .btn-explore {
+    z-index: 21;
+  }
 </style>

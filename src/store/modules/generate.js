@@ -199,6 +199,14 @@ const actions = {
         dispatch('setLoadingFailed')
       })
   },
+  quickGenerate ({ state, getters, dispatch, rootGetters }) {
+    let last = rootGetters.historyLastGenerate
+    if (last.option === 3 || last.option === 4) {
+      last.option = 1
+      last.rimg = ''
+    }
+    dispatch('generateNew', last)
+  },
   generateNew ({ state, getters, dispatch, rootGetters }, payload) {
     let current = rootGetters.historyCurrent
     let categories
@@ -209,7 +217,7 @@ const actions = {
     dispatch('historyLastGenerate', payload)
     switch (payload.option) {
       case 0:
-        // Quick Generate
+        // Random Generate
         categories = getters.getRandomCategories({
           keep: false
         })
@@ -318,21 +326,15 @@ const actions = {
               sbi: payload.sbi,
               metadata: response.data
             })
-          } else {
-            dispatch('setSnackbar', {
-              active: true,
-              message: 'Sorry, no matching results were found for that image',
-              color: 'error',
-              mode: 'multi',
-              timeout: 5000
+            dispatch('setOverlay', {
+              active: false
             })
+            router.push({
+              name: 'b0'
+            })
+          } else {
+            dispatch('quickGenerate')
           }
-          dispatch('setOverlay', {
-            active: false
-          })
-          router.push({
-            name: 'b0'
-          })
         })
         .catch(error => {
           console.log(error)
