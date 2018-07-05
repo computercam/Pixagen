@@ -82,7 +82,6 @@
     justify-content: center;
     align-items: center;
   }
-
   .faded {
     height: 60%;
     width: 60%;

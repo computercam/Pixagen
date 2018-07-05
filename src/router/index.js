@@ -56,6 +56,9 @@ export default new Router({
       path: '/walkthrough',
       name: 'w0',
       component: Walkthrough
+    },
+    {
+      path: '*', component: Landing
     }
   ]
 })
