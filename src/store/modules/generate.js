@@ -4,7 +4,7 @@ import xhr from '../../xhr'
 
 const state = {
   wordlists: {},
-  metadataAPI: 'http://gimgmetadata.limitunknown.com:8080/', // Trailing slash is necessary
+  metadataAPI: 'https://gimgmetadata.limitunknown.com/', // Trailing slash is necessary
   dataSource: 'https://gist.githubusercontent.com/abstracted/6809515b3f374f43e6e6732b020fffed/raw'
 }
 const getters = {
