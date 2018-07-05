@@ -82,7 +82,7 @@ export default {
 
 <style>
   ::selection {
-    background: rgba(123, 117, 148, 0.4)
+    background: rgba(123, 117, 148, 0.4) !important;
   }
   body {
     overflow-anchor: none !important;
