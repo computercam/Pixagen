@@ -33,12 +33,7 @@
 </template>
 
 <script>
-import Navbar from '../../organisms/Navbar'
-
 export default {
-  components: {
-    'app-navbar': Navbar
-  },
   data () {
     return {
       language: null
@@ -63,7 +58,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('setSettingsNav', { title: 'Translate', back: 's0' })
+    this.$store.dispatch('setSettingsNav', { title: 'Translate' })
   }
 }
 </script>

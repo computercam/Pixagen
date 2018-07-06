@@ -26,12 +26,7 @@
 </template>
 
 <script>
-  import Navbar from '../../organisms//Navbar'
-  
   export default {
-    components: {
-      'app-navbar': Navbar
-    },
     methods: {
       addCategory (category) {
         this.$store.dispatch('addActiveCategory', category)
@@ -52,7 +47,7 @@
       }
     },
     mounted () {
-      this.$store.dispatch('setSettingsNav', { title: 'Categories', back: 's0' })
+      this.$store.dispatch('setSettingsNav', { title: 'Categories' })
     }
   }
 </script>

@@ -19,7 +19,7 @@ const state = {
       walkthrough: {
         label: 'Help',
         icon: 'help',
-        route: 'w0'
+        route: 'h0'
       },
       about: {
         label: 'About',

@@ -4,7 +4,7 @@ const storage = window.localStorage.settings
 const template = {
   nav: {
     title: 'Settings',
-    back: 'b0'
+    back: 'b1'
   },
   categories: {
     active: null,

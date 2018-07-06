@@ -7,7 +7,7 @@ const template = {
   total: 0,
   index: 0,
   data: [],
-  lastGenerate: null
+  lastGenerate: 0
 }
 
 let state
@@ -76,8 +76,9 @@ const actions = {
     commit('historySave')
   },
   historyTimetravel ({ state, commit }, payload) {
-    commit('historyAdd', state.data[payload])
+    let temp = state.data[payload]
     commit('historyDelete', payload)
+    commit('historyAdd', temp)
     router.push({
       name: 'b0'
     })

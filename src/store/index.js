@@ -22,5 +22,15 @@ export const store = new Vuex.Store({
     snackbar,
     share,
     layout
+  },
+  getters: {
+    copyright () {
+      let d = new Date()
+      return 'Copyright ' + d.getFullYear() + ', Cameron Sanders'
+    },
+    version () {
+      return 'Version 0.4.1 Beta'
+    }
   }
+
 })

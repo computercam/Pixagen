@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-navbar :title="nav.title" :route="nav.back"></app-navbar>
+    <app-navbar :title="nav.title" color="primary" :logo="false" :menu="false"></app-navbar>
     <router-view :style="{
       marginTop: spaceTop + 'px',
     }"></router-view>

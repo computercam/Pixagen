@@ -5,11 +5,11 @@
         <v-layout column align-center justify-center>
           <v-flex xs4>
             <v-progress-circular v-if="overlayData.loading" :size="150" :width="10" indeterminate color="primary"></v-progress-circular>
-            <v-icon v-if="!overlayData.loading" class="overlay-icon">{{ overlayData.icon }}</v-icon>
+            <v-icon color="secondary" v-if="!overlayData.loading" class="overlay-icon">{{ overlayData.icon }}</v-icon>
           </v-flex>
           <v-flex xs1>
             <div v-if="showMessage" class="animated bounceIn">
-              <div class="headline font-weight-medium">{{ overlayData.message }}</div>
+              <div class="headline hover font-weight-medium">{{ overlayData.message }}</div>
             </div>
           </v-flex>
         </v-layout>
@@ -73,6 +73,8 @@
   .headline {
     color: #7b7594;
     text-shadow: 3px 3px 20px rgba(255, 255, 255, 0.6);
+  }
+  .hover {
     animation: hover 1s linear infinite;
   }
   @keyframes hover {

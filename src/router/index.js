@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Landing from '@/components/environments/Landing'
 import About from '@/components/environments/About'
-import Walkthrough from '@/components/environments/Walkthrough'
+import Help from '@/components/environments/Help'
 import Browser from '@/components/environments/Browser'
 import Settings from '@/components/environments/Settings'
 
@@ -53,9 +53,9 @@ export default new Router({
       ]
     },
     {
-      path: '/walkthrough',
-      name: 'w0',
-      component: Walkthrough
+      path: '/help',
+      name: 'h0',
+      component: Help
     },
     {
       path: '*', component: Landing

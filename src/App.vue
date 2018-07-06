@@ -44,9 +44,6 @@ export default {
       self.onDeviceReady()
     })
   },
-  beforeMount () {
-    this.$store.dispatch('initializeWordlistsData')
-  },
   computed: {
     overlayStatus () {
       return this.$store.getters.overlayStatus
@@ -76,6 +73,9 @@ export default {
       // Handle the back-button event on Android. By default it will exit the app.
       navigator.app.exitApp()
     }
+  },
+  beforeMount () {
+    this.$store.dispatch('initializeWordlistsData')
   }
 }
 </script>

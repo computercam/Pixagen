@@ -1,7 +1,7 @@
 export const routerHelpers = {
   methods: {
-    nav (route) {
-      this.$router.push({ name: route })
+    nav (route, query) {
+      this.$router.push({ name: route, query: query })
     }
   }
 }

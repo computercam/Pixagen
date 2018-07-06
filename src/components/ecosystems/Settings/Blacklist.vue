@@ -27,12 +27,7 @@
 </template>
 
 <script>
-import Navbar from '../../organisms/Navbar'
-
 export default {
-  components: {
-    'app-navbar': Navbar
-  },
   computed: {
     blacklist: {
       get () {
@@ -44,7 +39,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('setSettingsNav', { title: 'Blacklist', back: 's0' })
+    this.$store.dispatch('setSettingsNav', { title: 'Blacklist' })
   }
 }
 </script>

@@ -190,9 +190,6 @@ const actions = {
         dispatch('setOverlay', {
           active: false
         })
-        router.push({
-          name: 'b0'
-        })
       })
       .catch(error => {
         console.log(error)
