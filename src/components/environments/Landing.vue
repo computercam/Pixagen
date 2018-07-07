@@ -89,10 +89,10 @@
     margin-left: 12px;
   }
   .logo-big {
-    width: 80% !important;
+    width: 240px !important;
   }
   .logo-small{
-    width: 70% !important;
+    width: 200px !important;
   } 
   .logo-home {
     margin-top: 0 !important;

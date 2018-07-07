@@ -71,6 +71,6 @@
 <style scoped>
   .logo {
     margin-top: 8px;
-    width: 14.5%;
+    width: 48px;
   }
 </style>

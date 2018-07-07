@@ -95,6 +95,9 @@ export default {
  }
  .obscured {
     filter: blur(2.25px) grayscale(40%) contrast(70%) brightness(105%);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
   }
  .dark-text {
    color: #6c6974 !important;
