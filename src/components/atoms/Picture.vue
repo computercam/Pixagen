@@ -1,5 +1,5 @@
 <template>
-    <div class="picture" :style="{ height: getImageHeight() + 'px', backgroundImage: 'url(' + source + ')' }"></div>
+    <div class="picture swiper-target" :style="{ height: getImageHeight() + 'px', backgroundImage: 'url(' + source + ')' }"></div>
 </template>
 <script>
   export default {

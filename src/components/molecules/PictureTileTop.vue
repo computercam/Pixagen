@@ -8,12 +8,12 @@
             </app-explore-btn>
           </v-flex>
           <v-flex xs12>
-            <v-btn depressed icon large class="btn-favorite" @click.native="toggleFav()">
+            <v-btn depressed icon large class="btn-favorite" @click.native.stop.prevent="toggleFav()">
               <v-icon :class="{ liked: fav }" color="white">favorite</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>
-        <div class="picture-tile-actions overlay">
+        <div class="picture-tile-actions overlay swiper-target">
         </div>
       </div>
       <app-picture :source="item.tu" :h="item.th" :hAdjust="hAdjust"></app-picture>

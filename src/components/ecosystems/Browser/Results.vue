@@ -8,7 +8,7 @@
             <h3 class="light-text font-weight-regular">{{ getWords(current.categories) }}</h3>
           </v-flex>
         </v-layout>
-        <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true">
+        <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true" :showSwiper="true">
         </app-picture-tiles>
       </div>
     </template>
