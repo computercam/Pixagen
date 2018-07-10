@@ -166,7 +166,11 @@
         if (firstRimg && this.fullscreen.index === 0) {
           return false
         } else {
-          return this.swiperCurrent().rimg !== false
+          if (typeof this.swiperCurrent().rimg !== 'undefined') {
+            return this.swiperCurrent().rimg !== false
+          } else {
+            return false
+          }
         }
       },
       swiperImageArea () {
