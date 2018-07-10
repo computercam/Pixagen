@@ -2,7 +2,7 @@
   <div>
     <v-toolbar :color="color" :dense="!menu" fixed flat class="on-top">
       <v-toolbar-title v-if="logo">
-        <app-logo class="pointer" @click.native="quickGenerate()"></app-logo>
+        <app-logo slot="activator" class="pointer" @click.native="quickGenerate()"></app-logo>
       </v-toolbar-title>
       <v-icon class="pointer" v-else dark @click="back()">
           keyboard_arrow_left

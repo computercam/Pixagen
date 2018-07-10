@@ -102,7 +102,7 @@
           options: {
             loop: false,
             mode: 'horizontal',
-            lazy: true,
+            lazy: true
           }
         },
         stream: {
