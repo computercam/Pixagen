@@ -5,7 +5,7 @@
         <v-layout column align-center justify-center>
           <v-flex xs4>
             <v-progress-circular v-if="overlayData.loading" :size="150" :width="10" indeterminate color="primary"></v-progress-circular>
-            <v-icon color="secondary" v-if="!overlayData.loading" class="overlay-icon">{{ overlayData.icon }}</v-icon>
+            <v-icon color="error" v-if="!overlayData.loading" class="overlay-icon">{{ overlayData.icon }}</v-icon>
           </v-flex>
           <v-flex xs1>
             <div v-if="showMessage" class="animated bounceIn">
