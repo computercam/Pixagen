@@ -48,7 +48,9 @@ export default {
       this.$router.go('-1')
     },
     quickGenerate () {
-      this.$store.dispatch('quickGenerate')
+      if (this.$store.getters.historyExists) {
+        this.$store.dispatch('quickGenerate')
+      }
     }
   }
 }
