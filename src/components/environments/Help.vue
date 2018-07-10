@@ -4,7 +4,7 @@
     <v-container class="help-container">
       <v-expansion-panel popout class="faq-section">
         <v-expansion-panel-content v-for="(item, index) in faq" :key="index">
-          <div class="title" slot="header">{{ item.title }}</div>
+          <div class="title font-weight-regular" slot="header">{{ item.title }}</div>
           <v-card>
             <v-card-text v-for="(item, index) in item.paragraphs" :key="index">{{ item }}</v-card-text>
           </v-card>
@@ -27,7 +27,7 @@
       'app-navbar': Navbar
     },
     computed: {
-      faq() {
+      faq () {
         return this.$store.getters.getFaq
       }
     }
