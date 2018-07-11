@@ -199,7 +199,7 @@ const actions = {
   quickGenerate ({ state, getters, dispatch, rootGetters }) {
     let last = rootGetters.historyLastGenerate
     if (last.option === 3 || last.option === 4) {
-      last.option = 1
+      last.option = 0
       last.rimg = ''
     }
     dispatch('generateNew', last)

@@ -56,6 +56,10 @@ export default new Router({
       path: '/help',
       name: 'h0',
       component: Help
+    },
+    {
+      path: '*',
+      component: Landing
     }
   ]
 })
