@@ -1,3 +1,4 @@
+import moment from 'moment'
 import router from '../../router/index'
 
 const storage = window.localStorage.history
@@ -100,6 +101,7 @@ const mutations = {
     state.total++
   },
   historyAdd (state, payload) {
+    payload.time = moment()
     state.data.unshift(payload)
   },
   historyLastGenerate (state, payload) {

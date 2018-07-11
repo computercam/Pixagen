@@ -22,10 +22,10 @@
             <v-btn icon @click.native.stop="swiperShare()">
               <v-icon color="white">share</v-icon>
             </v-btn>
-            <v-btn icon :href="swiperCurrent().ou" target="_blank">
+            <v-btn icon :href="swiperCurrent.ou" target="_blank">
               <v-icon color="white">get_app</v-icon>
             </v-btn>
-            <v-btn icon :href="swiperCurrent().ru" target="_blank">
+            <v-btn icon :href="swiperCurrent.ru" target="_blank">
               <v-icon color="white">open_in_new</v-icon>
             </v-btn>
           </v-card-actions>
@@ -142,32 +142,27 @@
         }
       },
       swiperShare () {
-        this.$store.dispatch('shareDialogOpen', this.swiperCurrent().ou)
+        this.$store.dispatch('shareDialogOpen', this.swiperCurrent.ou)
       },
       swiperToggleFav () {
-        this.$store.dispatch('toggleFav', this.swiperCurrent())
-      },
-      swiperCurrent () {
-        return this.pictures[this.fullscreen.index]
+        this.$store.dispatch('toggleFav', this.swiperCurrent)
       },
       swiperExplore () {
         this.fullscreen.active = false
-        setTimeout(() => {
-          this.$store.dispatch('generateNew', {
-            option: 3,
-            rimg: this.swiperCurrent().rimg,
-            keywords: this.swiperCurrent().okeys,
-            categories: this.swiperCurrent().ocats
-          })
-        }, 350)
+        this.$store.dispatch('generateNew', {
+          option: 3,
+          rimg: this.swiperCurrent.rimg,
+          keywords: this.swiperCurrent.okeys,
+          categories: this.swiperCurrent.ocats
+        })
       },
       swiperShowExplore () {
         let firstRimg = this.$store.getters.historyCurrent.rimg !== false
         if (firstRimg && this.fullscreen.index === 0) {
           return false
         } else {
-          if (typeof this.swiperCurrent() !== 'undefined') {
-            return this.swiperCurrent().rimg !== false
+          if (typeof this.swiperCurrent !== 'undefined') {
+            return this.swiperCurrent.rimg !== false
           } else {
             return false
           }
@@ -194,7 +189,7 @@
         return size
       },
       swiperExitScroll () {
-        let url = this.swiperCurrent().tu
+        let url = this.swiperCurrent.tu
         let list = Array.from(document.querySelectorAll('.picture'))
         let index = list.findIndex((el) => {
           return el.style.backgroundImage.includes(url)
@@ -299,7 +294,16 @@
         return this.$store.getters.layoutGutters
       },
       swiperIsFav () {
-        return this.$store.getters.isFav(this.swiperCurrent().ou) !== -1
+        return this.$store.getters.isFav(this.swiperCurrent.ou) !== -1
+      },
+      swiperCurrent () {
+        let current = this.pictures[this.fullscreen.index]
+        if (typeof current === 'undefined') {
+          current = this.pictures[this.swiper.activeIndex]
+        }
+        if (typeof current !== 'undefined') {
+          return current
+        }
       },
       swiper () {
         return this.$refs.swiper.swiper
