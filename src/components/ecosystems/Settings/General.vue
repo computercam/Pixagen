@@ -8,14 +8,15 @@
           <v-list-tile-title class="darker-text">Keywords</v-list-tile-title>
           <v-list-tile-sub-title class="light-text">Amount of keywords to generate</v-list-tile-sub-title>
         </v-list-tile-content>
-        <v-list-tile-action>
-          <div class="kw-counter dark-text">{{ keywordAmount }}</div>
+        <v-list-tile-action class="kw-selection">
+          <v-select
+          solo
+          dense
+          v-model="keywordAmount"
+          :items="kwAmountChoices"
+          :label="String(keywordAmount)"
+        ></v-select>
         </v-list-tile-action>
-      </v-list-tile>
-      <v-list-tile>
-        <v-flex xs12>
-          <v-slider thumb-size="44" ticks="always" tick-size="2" @start="slider(true)" @end="slider(false)" min="1" color="primary" :max="settings.keywords.max" v-model="keywordAmount"></v-slider>
-        </v-flex>
       </v-list-tile>
       </app-tile-slider>
       <v-divider inset></v-divider>
@@ -150,8 +151,13 @@
           this.$store.dispatch('toggleUnique')
         }
       },
-      keywordsMax () {
-        return this.$store.getters.getSettings.keywords.amount
+      kwAmountChoices () {
+        let max = this.$store.getters.getSettings.keywords.max
+        let choices = []
+        for (let i = 0; i < max; i++) {
+          choices[i] = i + 1
+        }
+        return choices
       }
     },
     mounted () {
@@ -160,6 +166,9 @@
   }
 </script>
 <style scoped>
+  .kw-selection {
+    max-width: 50px;
+  }
   .kw-counter {
     margin-right: 8px;
   }
