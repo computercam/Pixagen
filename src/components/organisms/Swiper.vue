@@ -1,37 +1,35 @@
 <template>
-  <v-layout row justify-center>
-    <v-dialog v-model="swiperState.active" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-card class="swiper-container">
-        <swiper :options="swiperState.options" ref="swiper" @slideChangeTransitionEnd="swiperChange()">
-          <swiper-slide v-if="swiperActive" v-for="(item, index) in stream" :key="index" :style="{ backgroundImage: 'url(' + item.tu + ')', height: swiperImageArea(), backgroundSize: swiperImageSize() }"
-            class="slide">
-          </swiper-slide>
-        </swiper>
-        <v-card-actions v-if="swiperActive" class="swiper-actions">
-          <v-btn icon @click.native="swiperExit()">
-            <v-icon color="white">close</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn v-if="swiperShowExplore()" flat round color="white" class="btn-explore" @click.native="swiperExplore()">
-            <v-icon small left color="white">image_search</v-icon>
-            Explore
-          </v-btn>
-          <v-btn class="btn-favorite" @click.native="swiperToggleFav()" icon>
-            <v-icon color="white" :class="{ liked: swiperIsFav}">favorite</v-icon>
-          </v-btn>
-          <v-btn icon @click.native.stop="swiperShare()">
-            <v-icon color="white">share</v-icon>
-          </v-btn>
-          <v-btn icon :href="swiperCurrent.ou" target="_blank">
-            <v-icon color="white">get_app</v-icon>
-          </v-btn>
-          <v-btn icon :href="swiperCurrent.ru" target="_blank">
-            <v-icon color="white">open_in_new</v-icon>
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-layout>
+  <v-dialog v-model="swiperState.active" fullscreen hide-overlay transition="dialog-bottom-transition">
+    <v-card class="swiper-card-container">
+      <swiper :options="swiperState.options" ref="swiper" @slideChangeTransitionEnd="swiperChange()">
+        <swiper-slide v-if="swiperActive" v-for="(item, index) in stream" :key="index" :style="{ backgroundImage: 'url(' + item.tu + ')', height: swiperImageArea(), backgroundSize: swiperImageSize() }"
+          class="slide">
+        </swiper-slide>
+      </swiper>
+      <v-card-actions v-if="swiperActive" class="swiper-actions">
+        <v-btn icon @click.native="swiperExit()">
+          <v-icon color="white">close</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn v-if="swiperShowExplore()" flat round color="white" class="btn-explore" @click.native="swiperExplore()">
+          <v-icon small left color="white">image_search</v-icon>
+          Explore
+        </v-btn>
+        <v-btn class="btn-favorite" @click.native="swiperToggleFav()" icon>
+          <v-icon color="white" :class="{ liked: swiperIsFav}">favorite</v-icon>
+        </v-btn>
+        <v-btn icon @click.native.stop="swiperShare()">
+          <v-icon color="white">share</v-icon>
+        </v-btn>
+        <v-btn icon :href="swiperCurrent.ou" target="_blank">
+          <v-icon color="white">get_app</v-icon>
+        </v-btn>
+        <v-btn icon :href="swiperCurrent.ru" target="_blank">
+          <v-icon color="white">open_in_new</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 <script>
   import 'swiper/dist/css/swiper.css'
@@ -85,7 +83,7 @@
         
       },
       swiperImageArea () {
-        return window.innerHeight - 52 + 'px'
+        return window.innerHeight - 104 + 'px'
       },
       swiperImageSize () {
         let vpw = window.innerWidth
@@ -148,16 +146,19 @@
   }
 </script>
 <style scoped>
-  .swiper-container {
+  .swiper-card-container {
     background-color: white;
   }
-
+  .swiper-container {
+    z-index: 40;
+  }
   .swiper-actions {
     background-color: #7b7594;
-    position: fixed;
-    bottom: 0;
     width: 100%;
-    height: 52px;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 27px;
+    z-index: 41;
   }
   .slide {
     background-position: center;

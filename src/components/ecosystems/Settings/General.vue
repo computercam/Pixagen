@@ -14,7 +14,7 @@
       </v-list-tile>
       <v-list-tile>
         <v-flex xs12>
-          <v-slider @start="slider(true)" @end="slider(false)" min="0" color="primary" :max="settings.keywords.max" v-model="keywordAmount"></v-slider>
+          <v-slider thumb-size="44" ticks="always" tick-size="2" @start="slider(true)" @end="slider(false)" min="1" color="primary" :max="settings.keywords.max" v-model="keywordAmount"></v-slider>
         </v-flex>
       </v-list-tile>
       </app-tile-slider>

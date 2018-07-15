@@ -32,10 +32,10 @@ export const store = new Vuex.Store({
   getters: {
     copyright () {
       let d = new Date()
-      return 'Copyright ' + d.getFullYear() + ', Cameron Sanders'
+      return `Copyright ${d.getFullYear()}, LimitUnknown.com`
     },
     version () {
-      return 'Version 0.4.1 Beta'
+      return '0.4.4 Beta'
     }
   }
 

@@ -22,7 +22,7 @@ const state = {
   },
   scroll: {
     counter: 0,
-    counterEnd: 30,
+    counterEnd: 25,
     y: 0,
     cH: 0,
     sH: 0,
@@ -91,6 +91,9 @@ const actions = {
       } else {
         dispatch('setNavShow', true)
       }
+    }
+    if (payload.y === 0) {
+      dispatch('setNavShow', true)
     }
     commit('setScroll', payload)
   },

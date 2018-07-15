@@ -36,10 +36,10 @@ export default {
       let bottom = document.querySelector('.actionBar')
       if (this.navShow === false) {
         top.style.transform = 'translateY(' + this.spaceTop * -1 + 'px)'
-        bottom.style.transform = 'translateY(' + this.spaceBottom + 'px)'
+        // bottom.style.transform = 'translateY(' + this.spaceBottom + 'px)'
       } else {
         top.style.transform = 'translateY(' + 0 + 'px)'
-        bottom.style.transform = 'translateY(' + 0 + 'px)'
+        // bottom.style.transform = 'translateY(' + 0 + 'px)'
       }
     }
   }
