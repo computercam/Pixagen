@@ -1,9 +1,10 @@
 const state = {
   data: [],
-  increment: 10,
+  increment: 20,
+  reset: 10,
   range: {
     start: 0,
-    end: 20
+    end: 10
   }
 }
 
@@ -35,7 +36,7 @@ const actions = {
 const mutations = {
   tilesReset (state) {
     state.range.start = 0
-    state.range.end = state.increment
+    state.range.end = state.reset
   },
   tilesIncrement (state) {
     state.range.start = state.range.end
