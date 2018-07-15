@@ -10,6 +10,8 @@ import snackbar from './modules/snackbar'
 import share from './modules/share'
 import layout from './modules/layout'
 import help from './modules/help'
+import swiper from './modules/swiper'
+import tiles from './modules/tiles'
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -23,7 +25,9 @@ export const store = new Vuex.Store({
     snackbar,
     share,
     layout,
-    help
+    help,
+    swiper,
+    tiles
   },
   getters: {
     copyright () {

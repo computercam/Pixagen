@@ -21,6 +21,8 @@ const state = {
     350: 10
   },
   scroll: {
+    counter: 0,
+    counterEnd: 30,
     y: 0,
     cH: 0,
     sH: 0,
@@ -77,10 +79,18 @@ const actions = {
   onScroll ({ state, getters, commit, dispatch }, payload) {
     if (payload.y >= 0 && payload.y >= state.scroll.y) {
       commit('setScroll', { direction: 'down' })
-      dispatch('setNavShow', false)
+      if (state.scroll.counter < state.scroll.counterEnd) {
+        commit('setScrollCounter', 'down')
+      } else {
+        dispatch('setNavShow', false)
+      }
     } else {
       commit('setScroll', { direction: 'up' })
-      dispatch('setNavShow', true)
+      if (state.scroll.counter > 0) {
+        commit('setScrollCounter', 'up')
+      } else {
+        dispatch('setNavShow', true)
+      }
     }
     commit('setScroll', payload)
   },
@@ -96,6 +106,13 @@ const mutations = {
   setScroll (state, payload) {
     for (let item in payload) {
       state.scroll[item] = payload[item]
+    }
+  },
+  setScrollCounter (state, payload) {
+    if (payload === 'up') {
+      state.scroll.counter--
+    } else {
+      state.scroll.counter++
     }
   },
   setNavShow (state, payload) {
