@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app-background">
     <v-content>
       <app-overlay></app-overlay>
       <app-snackbar></app-snackbar>
@@ -20,13 +20,21 @@ export default {
     'app-snackbar': InfoSnackbar,
     'app-share': ShareDialog
   },
-  watch: {
-    overlayStatus () {
-      if (this.overlayStatus) {
+  methods: {
+    toggleCanScroll () {
+      if (this.overlayStatus || this.swiperStatus) {
         document.documentElement.style.overflow = 'hidden'
       } else {
         document.documentElement.style.overflow = 'initial'
       }
+    }
+  },
+  watch: {
+    overlayStatus () {
+      this.toggleCanScroll()
+    },
+    swiperStatus () {
+      this.toggleCanScroll()
     },
     $route (to, from) {
       window.scroll({ top: 0, behavior: 'instant' })
@@ -35,6 +43,9 @@ export default {
   computed: {
     overlayStatus () {
       return this.$store.getters.overlayStatus
+    },
+    swiperStatus () {
+      return this.$store.getters.getSwiper.active
     }
   },
   beforeMount () {
@@ -44,6 +55,9 @@ export default {
 </script>
 
 <style>
+  .app-background {
+    background: #fafafa;
+  }
   ::selection {
     background: rgba(123, 117, 148, 0.4) !important;
   }

@@ -1,6 +1,7 @@
 <template>
   <div>
     <template v-if="exists">
+      <app-swiper v-if="swiperActive"></app-swiper>
       <div class="results-container">
         <v-layout row wrap class="results-header" :style="{ padding: margins }">
           <v-flex xs12>
@@ -18,11 +19,13 @@
 <script>
   import PictureTiles from '../../organisms/PictureTiles'
   import Blank from '../../atoms/Blank'
+  import Swiper from '../../organisms/Swiper'
   
   export default {
     components: {
       'app-picture-tiles': PictureTiles,
-      'app-blank': Blank
+      'app-blank': Blank,
+      'app-swiper': Swiper
     },
     methods: {
       getWords (wordlist) {
@@ -40,6 +43,9 @@
       },
       exists () {
         return this.$store.getters.historyExists
+      },
+      swiperActive () {
+       return this.$store.getters.tilesData.length > 0
       },
       margins () {
         return this.$store.getters.margins
