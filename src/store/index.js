@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
       return `Copyright ${d.getFullYear()}, LimitUnknown.com`
     },
     version () {
-      return '0.4.4 Beta'
+      return '0.4.5 Beta'
     }
   }
 

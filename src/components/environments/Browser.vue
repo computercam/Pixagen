@@ -13,6 +13,7 @@
 <script>
 import Navbar from '../organisms/Navbar'
 import Actionbar from '../organisms/Actionbar'
+import iPhoneX from '../../iPhoneX'
 
 export default {
   data () {
@@ -41,6 +42,15 @@ export default {
         top.style.transform = 'translateY(' + 0 + 'px)'
         // bottom.style.transform = 'translateY(' + 0 + 'px)'
       }
+    }
+  },
+  mounted () {
+    if (iPhoneX()) {
+      setTimeout(() => {
+        let actionBar = document.querySelector('.actionBar')
+        actionBar.style.height = 'unset'
+        actionBar.style.paddingBottom = '25px'
+      }, 100)
     }
   }
 }

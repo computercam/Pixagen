@@ -2,7 +2,7 @@
   <v-dialog v-model="swiperState.active" fullscreen hide-overlay transition="slide-x-transition">
     <v-card class="swiper-card-container">
       <swiper :options="swiperState.options" ref="swiper" @slideChangeTransitionEnd="swiperChange()">
-        <swiper-slide v-if="swiperActive" v-for="(item, index) in stream" :key="index" :style="{ backgroundImage: 'url(' + item.tu + ')', height: swiperImageArea(), backgroundSize: swiperImageSize() }"
+        <swiper-slide v-for="(item, index) in stream" :key="index" :style="{ backgroundImage: 'url(' + item.tu + ')', height: swiperImageArea(), backgroundSize: swiperImageSize() }"
           class="slide">
         </swiper-slide>
       </swiper>

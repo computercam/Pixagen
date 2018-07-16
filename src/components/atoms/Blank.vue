@@ -85,6 +85,6 @@
   .faded {
     height: 60%;
     width: 60%;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 </style>

@@ -13,8 +13,7 @@
   import InfoOverlay from './components/organisms/InfoOverlay'
   import InfoSnackbar from './components/organisms/InfoSnackbar'
   import ShareDialog from './components/organisms/ShareDialog'
-  import iPhoneX from './iPhoneX'
-
+  
   export default {
     components: {
       'app-overlay': InfoOverlay,
@@ -64,17 +63,6 @@
     beforeMount() {
       this.$store.dispatch('initializeWordlistsData')
     },
-    mounted() {
-      if (iPhoneX()) {
-        (() => {
-          setTimeout(() => {
-            let actionBar = document.querySelector('.actionBar')
-            actionBar.style.height = 'unset'
-            actionBar.style.paddingBottom = '25px'
-          }, 100)
-        })();
-      }
-    }
   }
 </script>
 
