@@ -1,10 +1,10 @@
 <template>
     <div>
-      <template v-if="exists">
+      <div v-if="exists && initialized" class="animated fadeIn">
         <div class="liked-container">
           <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
         </div>
-      </template>
+      </div>
       <app-blank v-else></app-blank>
     </div>
 </template>
@@ -15,6 +15,11 @@ export default {
   components: {
     'app-picture-tiles': PictureTiles,
     'app-blank': Blank
+  },
+  data () {
+    return {
+      initialized: false
+    }
   },
   computed: {
     liked () {
@@ -32,6 +37,9 @@ export default {
   mounted () {
     this.$store.dispatch('setNavShow', true)
     this.$store.dispatch('setActionbarSelected', 'liked')
+    setTimeout(() => {
+      this.initialized = true
+    }, 250)
   }
 }
 </script>

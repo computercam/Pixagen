@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="exists">
+    <div v-if="exists && initialized" class="animated fadeIn">
       <app-swiper v-if="swiperActive"></app-swiper>
       <div class="results-container">
         <v-layout row wrap class="results-header" :style="{ padding: margins }">
@@ -12,7 +12,7 @@
         <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true" :showSwiper="true">
         </app-picture-tiles>
       </div>
-    </template>
+    </div>
     <app-blank v-else></app-blank>
   </div>
 </template>
@@ -26,6 +26,11 @@
       'app-picture-tiles': PictureTiles,
       'app-blank': Blank,
       'app-swiper': Swiper
+    },
+    data () {
+      return {
+        initialized: false
+      }
     },
     methods: {
       getWords (wordlist) {
@@ -63,8 +68,11 @@
       }
     },
     mounted () {
-      this.$store.dispatch('setNavShow', true)
       this.$store.dispatch('setActionbarSelected', 'browse')
+      this.$store.dispatch('setNavShow', true)
+      setTimeout(() => {
+        this.initialized = true
+      }, 250)
     }
   }
 </script>

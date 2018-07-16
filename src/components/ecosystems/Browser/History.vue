@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="exists">
+    <div v-if="exists && initialized" class="animated fadeIn">
       <v-list two-line subheader>
         <v-subheader class="light-text">SEARCH HISTORY</v-subheader>
         <v-divider></v-divider>
@@ -27,7 +27,7 @@
               <v-divider inset v-if="index < history.length - 1"></v-divider>
         </template>
       </v-list>
-    </template>
+    </div>
     <app-blank v-else></app-blank>
   </div>
 </template>
@@ -38,6 +38,11 @@
   export default {
     components: {
       'app-blank': Blank
+    },
+    data () {
+      return {
+        initialized: false
+      }
     },
     methods: {
       getWords (wordlist) {
@@ -77,6 +82,9 @@
     mounted () {
       this.$store.dispatch('setNavShow', true)
       this.$store.dispatch('setActionbarSelected', 'history')
+      setTimeout(() => {
+        this.initialized = true
+      }, 250)
     }
   }
 </script>

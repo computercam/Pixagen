@@ -34,6 +34,7 @@
 <script>
   import 'swiper/dist/css/swiper.css'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
+  import iPhoneX from '../../iPhoneX.js'
   export default {
     components: {
       swiper,
@@ -50,8 +51,8 @@
       },
       swiperChange () {
         this.$store.dispatch('swiperIndex', this.swiper.activeIndex)
-        if (this.swiperState.index > this.stream.length - 2) {
-          this.$store.dispatch('tilesAppend', { pictures: this.pictures })
+        if (this.swiperState.index > this.stream.length - 5 && this.stream.length < this.pictures.length) {
+          this.$store.dispatch('tilesAppend', { pictures: this.pictures, swiper: true })
         }
       },
       swiperShare () {
@@ -107,6 +108,14 @@
       swiperActive () {
         if (this.swiperActive === true) {
           this.swiper.slideTo(this.swiperState.index, 0)
+          if (iPhoneX()) {
+            (() => {
+              setTimeout(() => {
+                let swiperActions = document.querySelector('.swiper-actions')
+                swiperActions.style.paddingBottom = '40px'
+              }, 100)
+            })();
+          }
         }
       }
     },
@@ -155,7 +164,7 @@
   .swiper-actions {
     background-color: #7b7594;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     padding-bottom: 27px;
     z-index: 41;

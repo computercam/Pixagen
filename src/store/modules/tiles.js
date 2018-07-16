@@ -1,6 +1,7 @@
 const state = {
   data: [],
   increment: 15,
+  incrementSwiper: 1,
   reset: 10,
   range: {
     start: 0,
@@ -24,8 +25,9 @@ const actions = {
   },
   tilesAppend ({ state, commit }, payload) {
     if (state.range.end < payload.pictures.length) {
-      commit('tilesIncrement')
-      commit('tilesInsert', { 
+      commit('tilesIncrement', { swiper: payload.swiper })
+      commit('tilesInsert', {
+        swiper: payload.swiper,
         append: true, 
         insert: payload.pictures.slice(state.range.start, state.range.end) 
       })
@@ -38,13 +40,21 @@ const mutations = {
     state.range.start = 0
     state.range.end = state.reset
   },
-  tilesIncrement (state) {
+  tilesIncrement (state, payload) {
     state.range.start = state.range.end
-    state.range.end += state.increment
+    if (payload.swiper === true) {
+      state.range.end += state.incrementSwiper
+    } else {
+      state.range.end += state.increment
+    }
   },
   tilesInsert (state, payload) {
     if (payload.append === true ) {
-      state.data = state.data.concat(payload.insert)
+      if (payload.swiper === true) {
+        state.data.push(...payload.insert)
+      } else {
+        state.data = state.data.concat(payload.insert)
+      }
     } else {
       state.data = payload.insert
     }
