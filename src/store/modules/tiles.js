@@ -1,6 +1,6 @@
 const state = {
   data: [],
-  increment: 20,
+  increment: 15,
   reset: 10,
   range: {
     start: 0,

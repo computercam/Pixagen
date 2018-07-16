@@ -23,10 +23,10 @@ export default {
   methods: {
     toggleCanScroll () {
       if (this.swiperStatus) {
-        document.querySelector('.content-view').style.display = 'none'
+        document.querySelector('.results-container').style.display = 'none'
         document.documentElement.style.position = 'fixed'
       } else {
-        document.querySelector('.content-view').style.display = 'initial'
+        document.querySelector('.results-container').style.display = 'initial'
         document.documentElement.style.position = 'initial'
       }
       if (this.overlayStatus || this.swiperStatus) {
