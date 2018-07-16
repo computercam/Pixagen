@@ -1,8 +1,10 @@
 <template>
     <div>
-      <div v-if="exists && initialized" class="animated fadeIn">
-        <div class="liked-container">
-          <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+      <div v-if="exists">
+        <div v-if="initialized" class="animated fadeIn">
+          <div class="liked-container">
+            <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+          </div>
         </div>
       </div>
       <app-blank v-else></app-blank>

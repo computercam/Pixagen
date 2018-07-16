@@ -1,7 +1,6 @@
 const state = {
   data: [],
   increment: 15,
-  incrementSwiper: 1,
   reset: 10,
   range: {
     start: 0,
@@ -17,7 +16,7 @@ const getters = {
 
 const actions = {
   tilesReset ({ state, commit, }, payload) {
-    commit('tilesReset')
+    commit('tilesReset', { overide: payload.overide })
     commit('tilesInsert', { 
       append: false, 
       insert: payload.pictures.slice(state.range.start, state.range.end)
@@ -25,7 +24,7 @@ const actions = {
   },
   tilesAppend ({ state, commit }, payload) {
     if (state.range.end < payload.pictures.length) {
-      commit('tilesIncrement', { swiper: payload.swiper })
+      commit('tilesIncrement', { overide: payload.overide })
       commit('tilesInsert', {
         swiper: payload.swiper,
         append: true, 
@@ -36,14 +35,19 @@ const actions = {
 }
 
 const mutations = {
-  tilesReset (state) {
+  tilesReset (state, payload) {
     state.range.start = 0
-    state.range.end = state.reset
+    if (typeof payload.overide === 'number') {
+      console.log('override')
+      state.range.end = payload.overide
+    } else {
+      state.range.end = state.reset
+    }
   },
   tilesIncrement (state, payload) {
     state.range.start = state.range.end
-    if (payload.swiper === true) {
-      state.range.end += state.incrementSwiper
+    if (typeof payload.overide === 'number') {
+      state.range.end += payload.overide
     } else {
       state.range.end += state.increment
     }

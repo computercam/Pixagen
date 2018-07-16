@@ -91,7 +91,6 @@
         </v-list-tile>
       </v-list>
     </div>
-    <app-blank v-else></app-blank>
   </div>
 </template>
 

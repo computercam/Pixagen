@@ -1,16 +1,18 @@
 <template>
   <div>
-    <div v-if="exists && initialized" class="animated fadeIn">
-      <app-swiper v-if="swiperActive"></app-swiper>
-      <div class="results-container">
-        <v-layout row wrap class="results-header" :style="{ padding: margins }">
-          <v-flex xs12>
-            <h1 class="dark-text font-weight-regular">{{ getWords(current.keywords) }}</h1>
-            <h3 class="light-text font-weight-regular">{{ getWords(current.categories) }}</h3>
-          </v-flex>
-        </v-layout>
-        <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true" :showSwiper="true">
-        </app-picture-tiles>
+    <div v-if="exists">
+      <div v-if="initialized" class="animated fadeIn">
+        <app-swiper v-if="swiperActive"></app-swiper>
+        <div class="results-container">
+          <v-layout row wrap class="results-header" :style="{ padding: margins }">
+            <v-flex xs12>
+              <h1 class="dark-text font-weight-regular">{{ getWords(current.keywords) }}</h1>
+              <h3 class="light-text font-weight-regular">{{ getWords(current.categories) }}</h3>
+            </v-flex>
+          </v-layout>
+          <app-picture-tiles :refresh="true" :moreButtonShow="true" :isRimg="isRimg" :pictures="current.metadata" :big="false" :hover="true" :showSwiper="true">
+          </app-picture-tiles>
+        </div>
       </div>
     </div>
     <app-blank v-else></app-blank>

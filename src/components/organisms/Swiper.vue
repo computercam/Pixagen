@@ -52,7 +52,7 @@
       swiperChange () {
         this.$store.dispatch('swiperIndex', this.swiper.activeIndex)
         if (this.swiperState.index > this.stream.length - 5 && this.stream.length < this.pictures.length) {
-          this.$store.dispatch('tilesAppend', { pictures: this.pictures, swiper: true })
+          this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: 10 })
         }
       },
       swiperShare () {
@@ -109,12 +109,10 @@
         if (this.swiperActive === true) {
           this.swiper.slideTo(this.swiperState.index, 0)
           if (iPhoneX()) {
-            (() => {
-              setTimeout(() => {
-                let swiperActions = document.querySelector('.swiper-actions')
-                swiperActions.style.paddingBottom = '40px'
-              }, 100)
-            })();
+            setTimeout(() => {
+            let swiperActions = document.querySelector('.swiper-actions')
+              swiperActions.style.paddingBottom = '40px'
+            }, 10)
           }
         }
       }
@@ -158,16 +156,10 @@
   .swiper-card-container {
     background-color: white;
   }
-  .swiper-container {
-    z-index: 40;
-  }
   .swiper-actions {
     background-color: #7b7594;
     width: 100%;
-    position: fixed;
-    bottom: 0;
     padding-bottom: 27px;
-    z-index: 41;
   }
   .slide {
     background-position: center;

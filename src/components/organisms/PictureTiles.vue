@@ -5,10 +5,10 @@
         :showBottom="showBottom" :style="{ marginBottom: contentBuffer }" @click.native="fullscreenToggle(index, $event)">
       </app-picture-tile>
     </masonry>
-    <v-container v-if="moreButtonShow" fluid :style="{ marginBottom: contentBuffer,  padding: margins }">
+    <v-container v-show="moreButtonShow && moreButtonActive" fluid :style="{ marginBottom: contentBuffer }">
       <v-layout row wrap justify-center>
-        <v-flex xs12 class="view-more">
-          <v-btn rasied block large round color="primary" @click.native="moreButtonHandler">{{ moreButton.text }}</v-btn>
+        <v-flex xs12 class="view-more" :style="{ paddingBottom: buttonBottomPadding }">
+          <v-btn rasied block large round color="primary" @click.native="moreButtonHandler">Generate More Images</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
@@ -18,6 +18,7 @@
 <script>
   import PictureTile from './PictureTile'
   import ExploreBtn from '../atoms/ExploreBtn'
+  import iPhoneX from '../../iPhoneX'
 
   export default {
     components: {
@@ -60,11 +61,8 @@
     },
     data () {
       return {
+        moreButtonActive: false,
         streamLoading: false,
-        moreButton: {
-          mode: 'more',
-          text: 'Show more images'
-        }
       }
     },
     methods: {
@@ -88,18 +86,12 @@
       },
       moreButtonCheck () {
         if (this.stream.length >= this.pictures.length) {
-          this.moreButton.text = 'Generate new images'
-          this.moreButton.mode = 'generate'
+          this.moreButtonActive = true
         }
       },
       moreButtonHandler () {
-        if (this.moreButton.mode === 'more') {
-          this.$store.dispatch('tilesAppend', { pictures: this.pictures })
-        } else {
-          this.moreButton.text = 'Show more images'
-          this.moreButton.mode = 'more'
-          this.quickGenerate()
-        }
+        this.quickGenerate()
+        this.moreButtonActive = false
       },
       scrollOffset (num) {
         let offset = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -177,10 +169,21 @@
       },
       gutter () {
         return this.$store.getters.layoutGutters
+      },
+      buttonBottomPadding () {
+        if (iPhoneX()) {
+          return '38px'
+        } else {
+          return '0px'
+        }
       }
     },
     mounted () {
-      this.$store.dispatch('tilesReset', { pictures: this.pictures })
+      if (screen.width < 600) {
+        this.$store.dispatch('tilesReset', { pictures: this.pictures, overide: 5 })
+      } else {
+        this.$store.dispatch('tilesReset', { pictures: this.pictures })
+      }
       this.$store.dispatch('onResize', window.innerWidth)
     }
   }
