@@ -24,8 +24,10 @@ export default {
     toggleCanScroll () {
       if (this.overlayStatus || this.swiperStatus) {
         document.documentElement.style.overflow = 'hidden'
+        document.documentElement.style.position = 'fixed'
       } else {
         document.documentElement.style.overflow = 'initial'
+        document.documentElement.style.position = 'initial'
       }
     }
   },
@@ -55,6 +57,12 @@ export default {
 </script>
 
 <style>
+  /* html, body {
+    width: 100vh !important;
+    height:100% !important;
+    position: fixed !important;
+    -webkit-overflow-scrolling: touch !important;
+  } */
   .app-background {
     background: #fafafa;
   }
