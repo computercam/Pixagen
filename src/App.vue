@@ -22,12 +22,15 @@ export default {
   },
   methods: {
     toggleCanScroll () {
-      if (this.overlayStatus || this.swiperStatus) {
-        document.documentElement.style.overflow = 'hidden'
+      if (this.swiperStatus) {
         document.documentElement.style.position = 'fixed'
       } else {
-        document.documentElement.style.overflow = 'initial'
         document.documentElement.style.position = 'initial'
+      }
+      if (this.overlayStatus || this.swiperStatus) {
+        document.documentElement.style.overflow = 'hidden'
+      } else {
+        document.documentElement.style.overflow = 'initial'
       }
     }
   },
@@ -57,12 +60,6 @@ export default {
 </script>
 
 <style>
-  /* html, body {
-    width: 100vh !important;
-    height:100% !important;
-    position: fixed !important;
-    -webkit-overflow-scrolling: touch !important;
-  } */
   .app-background {
     background: #fafafa;
   }
