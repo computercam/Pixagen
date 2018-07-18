@@ -125,17 +125,19 @@
         }
       },
       scrollY () {
-        if (this.scrollY >= this.scrollEnd(200) && this.tilesLoading === false) {
-          this.tilesLoading = true
-          if (screen.width < 600) {
-            this.incrementor = 10
-            this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
-          } else {
-            this.$store.dispatch('tilesAppend', { pictures: this.pictures })
+        if (this.stream.length < this.pictures.length) {
+          if (this.scrollY >= this.scrollEnd(200) && this.tilesLoading === false) {
+            this.tilesLoading = true
+            if (screen.width < 600) {
+              this.incrementor = 10
+              this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
+            } else {
+              this.$store.dispatch('tilesAppend', { pictures: this.pictures })
+            }
+            setTimeout(() => {
+              this.tilesLoading = false
+            }, 400)
           }
-          setTimeout(() => {
-            this.tilesLoading = false
-          }, 400)
         }
         this.$store.dispatch('onScroll', {
           y: window.scrollY,
