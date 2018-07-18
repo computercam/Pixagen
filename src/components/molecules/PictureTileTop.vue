@@ -4,8 +4,10 @@
       <div v-if="hover" class="picture-tile-actions animated fadeIn">
         <v-layout class="fill-height" row wrap align-content-space-between>
           <v-flex xs12>
-            <app-explore-btn v-if="showExplore" class="btn-explore" :item="item" @explore="explore">
-            </app-explore-btn>
+            <v-btn v-show="showExplore" depressed round color="primary" class="btn-explore"  @click.native="explore({ type: 'rimg', option: 3, criteria: item.rimg })" >
+              <v-icon small left>image_search</v-icon>
+              Explore
+            </v-btn>
           </v-flex>
           <v-flex xs12>
             <v-btn depressed icon large class="btn-favorite" @click.native.stop.prevent="toggleFav()">
@@ -16,18 +18,17 @@
         <div class="picture-tile-actions overlay swiper-target">
         </div>
       </div>
-      <app-picture :source="item.tu" :h="item.th" :hAdjust="hAdjust"></app-picture>
+      <app-picture :source="item.tu" :h="item.th" :hAdjust="hAdjust" class="picture-tile-picture"></app-picture>
+      <v-progress-circular indeterminate color="secondary" class="picture-tile-loading"></v-progress-circular>
     </v-container>
   </div>
 </template>
 <script>
   import Picture from '../atoms/Picture'
-  import ExploreBtn from '../atoms/ExploreBtn'
 
   export default {
     components: {
-      'app-picture': Picture,
-      'app-explore-btn': ExploreBtn
+      'app-picture': Picture
     },
     props: {
       item: {
@@ -48,7 +49,7 @@
       },
       showExplore: {
         type: Boolean,
-        default: true
+        default: false
       }
     },
     methods: {
@@ -98,6 +99,19 @@
     width: 100%;
     top: 0;
   }
+
+  .picture-tile-picture {
+    z-index: 9;
+    position: relative;
+  }
+
+  .picture-tile-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 8;
+  }
   
   .btn-explore {
     float:right; 
@@ -111,12 +125,5 @@
 
   .liked {
     color: #26c6da !important;
-  }
-
-  .fadeIn { 
-    -webkit-animation: fadeIn 800ms; /* Safari 4+ */ 
-    -moz-animation:    fadeIn 800ms; /* Fx 5+ */ 
-    -o-animation:      fadeIn 800ms; /* Opera 12+ */ 
-    animation:         fadeIn 800ms; /* IE 10+, Fx 29+ */ 
   }
 </style>

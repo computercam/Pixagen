@@ -1,5 +1,5 @@
 <template>
-    <v-card raised hover class="picture-tile">
+    <v-card v-if="initialized" raised hover class="picture-tile animated fadeIn">
         <app-picture-tile-top
           :item="item"
           :hover="hover"
@@ -47,9 +47,30 @@
         type: Number,
         default: 10
       },
-      showExplore: {
-        type: Boolean,
-        default: true
+      index: {
+        type: Number,
+        default: 0
+      },
+      incrementor: {
+        type: Number,
+        default: 0
+      },
+      columns: {
+        type: Object,
+        default: null
+      }
+    },
+    data () {
+      return {
+        initialized: false
+      }
+    },
+    computed: {
+      isFav () {
+        return this.$store.getters.isFav(this.item.ou) !== -1
+      },
+      showExplore () {
+        return this.item.rimg !== false
       }
     },
     methods: {
@@ -68,11 +89,24 @@
         })
       }
     },
-    computed: {
-      isFav () {
-        return this.$store.getters.isFav(this.item.ou) !== -1
+    mounted () {
+      let index = this.index
+      let modulo = index % this.incrementor
+      let vpw = window.innerWidth
+      let columns = 1
+      for (let col in this.columns) {
+        if (vpw > col) {
+          columns = this.columns[col] + 1
+        }
       }
-    }
+      if (modulo > modulo / columns) {
+        modulo = modulo / columns
+      }
+      let delayOffset = modulo * 85
+      setTimeout(() => {
+        this.initialized = true
+      }, delayOffset)
+    },
   }
 </script>
 <style scoped>

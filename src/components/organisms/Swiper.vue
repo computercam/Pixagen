@@ -2,7 +2,7 @@
   <v-dialog v-model="swiperState.active" fullscreen hide-overlay transition="slide-x-transition">
     <v-card class="swiper-card-container">
       <swiper :options="swiperState.options" ref="swiper" @slideChangeTransitionEnd="swiperChange()">
-        <swiper-slide v-for="(item, index) in stream" :key="index" :style="{ backgroundImage: 'url(' + item.tu + ')', height: swiperImageArea(), backgroundSize: swiperImageSize() }"
+        <swiper-slide v-for="(item, index) in stream" :key="index" :style="{ backgroundImage: 'url(' + item.tu + ')', backgroundSize: swiperImageSize() }"
           class="slide">
         </swiper-slide>
       </swiper>
@@ -83,9 +83,6 @@
         }
         
       },
-      swiperImageArea () {
-        return window.innerHeight - 104 + 'px'
-      },
       swiperImageSize () {
         let vpw = window.innerWidth
         let size = ''
@@ -160,10 +157,12 @@
     background-color: #7b7594;
     width: 100%;
     padding-bottom: 27px;
+    height: 12vh;
   }
   .slide {
     background-position: center;
     width: 100vw;
+    height: 88vh;
   }
   .liked {
     color: #26c6da !important;

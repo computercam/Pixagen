@@ -1,9 +1,10 @@
 <template>
     <div>
       <div v-if="exists">
-        <div v-if="initialized" class="animated fadeIn">
+        <div class="animated fadeIn">
           <div class="liked-container">
-            <app-picture-tiles :pictures="liked.data" :big="true" :hover="false" :showBottom="true" :columnsBig="true"></app-picture-tiles>
+            <app-picture-tiles :columns="columns" :pictures="liked.data" :hover="false" :showBottom="true" :columnsBig="false"></app-picture-tiles>
+            </app-picture-tiles>
           </div>
         </div>
       </div>
@@ -24,6 +25,9 @@ export default {
     }
   },
   computed: {
+    columns () {
+      return this.$store.getters.layoutColumns.big
+    },
     liked () {
       return this.$store.getters.favs
     },
@@ -35,6 +39,9 @@ export default {
     exists () {
       this.$store.dispatch('setNavShow', true)
     }
+  },
+  beforeDestroy() {
+    this.initialized = false
   },
   mounted () {
     this.$store.dispatch('setNavShow', true)

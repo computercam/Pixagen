@@ -67,6 +67,10 @@
 </script>
 
 <style>
+  body {
+    overflow-anchor: none !important;
+  }
+
   .app-background {
     background: #fafafa;
   }
@@ -75,8 +79,17 @@
     background: rgba(123, 117, 148, 0.4) !important;
   }
 
-  body {
-    overflow-anchor: none !important;
+  .fadeIn { 
+    -webkit-animation: fadeIn 650ms;
+    -moz-animation:    fadeIn 650ms;
+    -o-animation:      fadeIn 650ms;
+    animation:         fadeIn 650ms;
+  }
+  .fadeOut { 
+    -webkit-animation: fadeOut 450ms;
+    -moz-animation:    fadeOut 450ms;
+    -o-animation:      fadeOut 450ms;
+    animation:         fadeOut 450ms;
   }
 
   .menu__content,

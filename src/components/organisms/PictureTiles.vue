@@ -1,15 +1,16 @@
 <template>
   <div>
     <masonry :cols="columns" :gutter="gutter" :style="{ padding: margins, overflow: 'hidden' }" v-scroll="onScroll" v-resize="onResize">
-      <app-picture-tile v-for="(item, index) in stream" :key="getUID()" :item="item" :hover="showHover" :showExplore="!(isRimg && index === 0)"
+      <app-picture-tile v-for="(item, index) in stream" :index="index" :incrementor="incrementor" :key="item.tu" :columns="columns" :item="item" :hover="showHover" :showExplore="item.rimg !== false"
         :showBottom="showBottom" :style="{ marginBottom: contentBuffer }" @click.native="fullscreenToggle(index, $event)">
       </app-picture-tile>
     </masonry>
-    <v-container v-show="moreButtonShow && moreButtonActive" fluid :style="{ marginBottom: contentBuffer }">
+    <v-container fluid :style="{ marginBottom: contentBuffer }">
       <v-layout row wrap justify-center>
-        <v-flex xs12 class="view-more" :style="{ paddingBottom: buttonBottomPadding }">
+        <v-flex v-if="moreButtonShow && moreButtonActive" xs12 class="view-more animated fadeIn" :style="{ paddingBottom: buttonBottomPadding }">
           <v-btn rasied block large round color="primary" @click.native="moreButtonHandler">Generate More Images</v-btn>
         </v-flex>
+        <v-progress-circular v-if="progressCheck" indeterminate :width="7" :size="70" color="accent"></v-progress-circular>
       </v-layout>
     </v-container>
   </div>
@@ -17,32 +18,26 @@
 
 <script>
   import PictureTile from './PictureTile'
-  import ExploreBtn from '../atoms/ExploreBtn'
   import iPhoneX from '../../iPhoneX'
 
   export default {
     components: {
-      'app-picture-tile': PictureTile,
-      'app-explore-btn': ExploreBtn
+      'app-picture-tile': PictureTile
     },
     props: {
       pictures: {
         type: Array,
         required: true
       },
-      big: {
-        type: Boolean,
-        default: false
+      columns: {
+        type: Object,
+        required: true
       },
       hover: {
         type: Boolean,
         default: true
       },
       showBottom: {
-        type: Boolean,
-        default: false
-      },
-      isRimg: {
         type: Boolean,
         default: false
       },
@@ -62,7 +57,9 @@
     data () {
       return {
         moreButtonActive: false,
-        streamLoading: false,
+        tilesLoading: false,
+        incrementor: 0,
+        scrollY: 0
       }
     },
     methods: {
@@ -75,9 +72,6 @@
           }
         }
       },
-      getUID () {
-        return window.btoa(Math.floor(Math.random() * (100 ** 8))).replace(/=/gm, '')
-      },
       onResize () {
         this.$store.dispatch('onResize', window.innerWidth)
       },
@@ -86,26 +80,19 @@
       },
       moreButtonCheck () {
         if (this.stream.length >= this.pictures.length) {
-          this.moreButtonActive = true
+          setTimeout(() => {
+            this.moreButtonActive = true
+          }, 500)
         }
       },
       moreButtonHandler () {
         this.quickGenerate()
-        this.moreButtonActive = false
       },
-      scrollOffset (num) {
-        let offset = document.documentElement.scrollHeight - document.documentElement.clientHeight
-        return offset - (offset / num)
+      scrollEnd (num) {
+        return document.documentElement.scrollHeight - document.documentElement.clientHeight - num
       },
       onScroll () {
-        if (window.scrollY >= this.scrollOffset(4)) {
-          this.$store.dispatch('tilesAppend', { pictures: this.pictures })
-        }
-        this.$store.dispatch('onScroll', {
-          y: window.scrollY,
-          cH: document.documentElement.clientHeight,
-          sH: document.documentElement.scrollHeight
-        })
+        this.scrollY = window.scrollY
       }
     },
     watch: {
@@ -113,6 +100,7 @@
         if (this.refresh) {
           window.scrollTo({ top: 0, behavior: 'instant' })
           this.$store.dispatch('tilesReset', { pictures: this.pictures })
+          this.moreButtonActive = false
         }
       },
       stream () {
@@ -135,6 +123,25 @@
             window.scroll({ top: top, behavior: 'instant' })
           }
         }
+      },
+      scrollY () {
+        if (this.scrollY >= this.scrollEnd(200) && this.tilesLoading === false) {
+          this.tilesLoading = true
+          if (screen.width < 600) {
+            this.incrementor = 10
+            this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
+          } else {
+            this.$store.dispatch('tilesAppend', { pictures: this.pictures })
+          }
+          setTimeout(() => {
+            this.tilesLoading = false
+          }, 400)
+        }
+        this.$store.dispatch('onScroll', {
+          y: window.scrollY,
+          cH: document.documentElement.clientHeight,
+          sH: document.documentElement.scrollHeight
+        })
       }
     },
     computed: {
@@ -154,18 +161,18 @@
         }
         return show
       },
+      progressCheck () {
+        if (this.moreButtonActive === false && this.stream.length < this.pictures.length) {
+          return true
+        } else {
+          return false
+        }
+      },
       margins () {
         return this.$store.getters.margins
       },
       contentBuffer () {
         return this.$store.getters.contentBuffer
-      },
-      columns () {
-        if (this.big) {
-          return this.$store.getters.layoutColumns.big
-        } else {
-          return this.$store.getters.layoutColumns.normal
-        }
       },
       gutter () {
         return this.$store.getters.layoutGutters
@@ -180,17 +187,22 @@
     },
     mounted () {
       if (screen.width < 600) {
-        this.$store.dispatch('tilesReset', { pictures: this.pictures, overide: 5 })
+        this.incrementor = 10
+        this.$store.dispatch('tilesReset', { pictures: this.pictures, overide: this.incrementor })
       } else {
+        this.incrementor = this.$store.getters.tilesIncrementor
         this.$store.dispatch('tilesReset', { pictures: this.pictures })
       }
       this.$store.dispatch('onResize', window.innerWidth)
-    }
+    },
   }
 </script>
 <style scoped>
   .view-more {
     max-width: 460px !important;
     margin-top: 48px;
+  }
+  .masonry-tile {
+    float: left;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="picture swiper-target" :style="{ height: getImageHeight() + 'px', backgroundImage: 'url(' + source + ')' }"></div>
+    <div class="picture swiper-target" :style="{ height: getImageHeight + 'px', backgroundImage: 'url(' + source + ')' }"></div>
 </template>
 <script>
   export default {
@@ -17,9 +17,9 @@
         default: 10
       }
     },
-    methods: {
+    computed: {
       getImageHeight () {
-        return this.h + (window.innerWidth / this.hAdjust)
+        return this.h * 1.25
       }
     }
   }

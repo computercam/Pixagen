@@ -9,8 +9,9 @@ import Vuetify from 'vuetify'
 import { store } from './store/index.js'
 import 'vuetify/dist/vuetify.min.css'
 import 'animate.css/animate.min.css'
-import VueMasonry from 'vue-masonry-css'
 import colors from 'vuetify/es5/util/colors'
+import VueMasonry from 'vue-masonry-css'
+
 
 
 Vue.use(Vuetify, { theme: {

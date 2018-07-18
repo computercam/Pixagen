@@ -22,7 +22,7 @@ const state = {
   },
   scroll: {
     counter: 0,
-    counterEnd: 25,
+    counterEnd: 20,
     y: 0,
     cH: 0,
     sH: 0,

@@ -1,13 +1,13 @@
 <template>
   <div>
     <div v-if="exists">
-      <div v-if="initialized" class="animated fadeIn">
+      <div class="animated fadeIn">
         <v-list two-line subheader>
           <v-subheader class="light-text">SEARCH HISTORY</v-subheader>
           <v-divider></v-divider>
           <template v-for="(item, index) in history">
             <v-list-tile class="history-tile" :key="index">
-              <v-badge left color="secondary" overlap :value="isRimg(item.rimg)">
+              <v-badge class="animated fadeIn" left color="secondary" overlap :value="isRimg(item.rimg)">
                 <v-icon slot="badge" small>image_search</v-icon>
                 <v-list-tile-avatar>
                   <div class="history-image" :style="{ backgroundImage: 'url(' + item.metadata[0].tu +')' }"></div>
@@ -43,7 +43,10 @@
     },
     data() {
       return {
-        initialized: false
+        initialized: {
+          main: false,
+          avatar: false
+        }
       }
     },
     methods: {
@@ -85,7 +88,10 @@
       this.$store.dispatch('setNavShow', true)
       this.$store.dispatch('setActionbarSelected', 'history')
       setTimeout(() => {
-        this.initialized = true
+        this.initialized.main = true
+        setTimeout(() => {
+          this.initialized.avatar = true
+        }, 250)
       }, 250)
     }
   }

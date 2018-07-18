@@ -13,6 +13,8 @@ import help from './modules/help'
 import swiper from './modules/swiper'
 import tiles from './modules/tiles'
 
+
+
 Vue.use(Vuex)
 export const store = new Vuex.Store({
   modules: {
@@ -38,5 +40,4 @@ export const store = new Vuex.Store({
       return '0.4.5 Beta'
     }
   }
-
 })

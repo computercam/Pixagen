@@ -8,31 +8,31 @@
         <p v-if="item.st" class="light-text caption grey--text">Source: {{ item.st }}</p>
       </div>
     </v-card-title>
-    <v-card-actions>
-      <v-btn class="btn-favorite" @click.native="toggleFav()" icon>
-        <v-icon :class="{ liked: fav, 'dark-text': true }">favorite</v-icon>
-      </v-btn>
-      <v-btn icon @click.native.stop="share()">
-        <v-icon class="dark-text">share</v-icon>
-      </v-btn>
-      <v-btn icon :href="item.ou" target="_blank">
-        <v-icon class="dark-text">get_app</v-icon>
-      </v-btn>
-      <v-btn icon :href="item.ru" target="_blank">
-        <v-icon class="dark-text">open_in_new</v-icon>
-      </v-btn>
-      <v-spacer></v-spacer>
-      <app-explore-btn v-if="showExplore" class="btn-explore" :item="item" @explore="explore">
-      </app-explore-btn>
-    </v-card-actions>
+    <div class="bottom-actions">
+      <v-card-actions v-if="initialized" class="animated fadeIn">
+        <v-btn class="btn-favorite" @click.native="toggleFav()" icon>
+          <v-icon :class="{ liked: fav, 'dark-text': true }">favorite</v-icon>
+        </v-btn>
+        <v-btn icon @click.native.stop="share()">
+          <v-icon class="dark-text">share</v-icon>
+        </v-btn>
+        <v-btn icon :href="item.ou" target="_blank">
+          <v-icon class="dark-text">get_app</v-icon>
+        </v-btn>
+        <v-btn icon :href="item.ru" target="_blank">
+          <v-icon class="dark-text">open_in_new</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn v-show="showExplore" depressed round color="primary" class="btn-explore"  @click.native="explore({ type: 'rimg', option: 3, criteria: item.rimg })" >
+          <v-icon small left>image_search</v-icon>
+          Explore
+        </v-btn>
+      </v-card-actions>
+    </div>
   </div>
 </template>
 <script>
-  import ExploreBtn from '../atoms/ExploreBtn'
   export default {
-    components: {
-      'app-explore-btn': ExploreBtn
-    },
     props: {
       item: {
         type: Object,
@@ -44,7 +44,12 @@
       },
       showExplore: {
         type: Boolean,
-        default: true
+        default: false
+      }
+    },
+    data() {
+      return {
+        initialized: false
       }
     },
     methods: {
@@ -57,6 +62,11 @@
       explore (payload) {
         this.$emit('explore', payload)
       }
+    },
+    mounted () {
+      setTimeout(() => {
+        this.initialized = true
+      }, 250)
     }
   }
 </script>
@@ -72,6 +82,10 @@
     color: #26c6da !important;
   }
   .btn-explore {
-    margin: 8px; 
+    margin: 8px;
+    z-index: 21;
+  }
+  .bottom-actions {
+    height: 68px;
   }
 </style>
