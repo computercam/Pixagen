@@ -94,14 +94,14 @@
     border-radius: 10px;
     position: absolute;
     display: none;
-    z-index: 10;
+    z-index: 12;
     height: 100%;
     width: 100%;
     top: 0;
   }
 
   .picture-tile-picture {
-    z-index: 9;
+    z-index: 11;
     position: relative;
   }
 
@@ -110,17 +110,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 8;
+    z-index: 10;
   }
   
   .btn-explore {
     float:right; 
     margin: 14px; 
-    z-index: 21; 
+    z-index: 20; 
   }
   
   .btn-favorite {
-    z-index: 21
+    z-index: 20
   }
 
   .liked {

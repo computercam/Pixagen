@@ -136,7 +136,7 @@
             }
             setTimeout(() => {
               this.tilesLoading = false
-            }, 400)
+            }, 100)
           }
         }
         this.$store.dispatch('onScroll', {

@@ -83,7 +83,6 @@
   }
   .btn-explore {
     margin: 8px;
-    z-index: 21;
   }
   .bottom-actions {
     height: 68px;

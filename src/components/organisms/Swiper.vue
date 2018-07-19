@@ -40,28 +40,28 @@
       swiper,
       swiperSlide
     },
-    data () {
+    data() {
       return {
         swiper: null
       }
     },
     methods: {
-      swiperExit () {
+      swiperExit() {
         this.$store.dispatch('swiperToggleShow', { last: this.swiperCurrent.tu, focus: true })
       },
-      swiperChange () {
+      swiperChange() {
         this.$store.dispatch('swiperIndex', this.swiper.activeIndex)
         if (this.swiperState.index > this.stream.length - 5 && this.stream.length < this.pictures.length) {
           this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: 10 })
         }
       },
-      swiperShare () {
+      swiperShare() {
         this.$store.dispatch('shareDialogOpen', this.swiperCurrent.ou)
       },
-      swiperToggleFav () {
+      swiperToggleFav() {
         this.$store.dispatch('toggleFav', this.swiperCurrent)
       },
-      swiperExplore () {
+      swiperExplore() {
         this.$store.dispatch('swiperToggleShow', { focus: false })
         this.$store.dispatch('generateNew', {
           option: 3,
@@ -70,7 +70,7 @@
           categories: this.swiperCurrent.ocats
         })
       },
-      swiperShowExplore () {
+      swiperShowExplore() {
         if (this.swiperActive) {
           let firstRimg = this.$store.getters.historyCurrent.rimg !== false
           if (firstRimg && this.swiperState.index === 0) {
@@ -81,9 +81,9 @@
         } else {
           return false
         }
-        
+
       },
-      swiperImageSize () {
+      swiperImageSize() {
         let vpw = window.innerWidth
         let size = ''
         if (vpw >= 1375) {
@@ -102,37 +102,41 @@
       }
     },
     watch: {
-      swiperActive () {
+      swiperActive() {
+        this.swiper.slideTo(this.swiperState.index, 0)
         if (this.swiperActive === true) {
-          this.swiper.slideTo(this.swiperState.index, 0)
-          if (iPhoneX()) {
-            setTimeout(() => {
+          setTimeout(() => {
             let swiperActions = document.querySelector('.swiper-actions')
-              swiperActions.style.paddingBottom = '40px'
-            }, 10)
-          }
+            if (iPhoneX()) {
+              let adjust = '34pt'
+              if (window.innerHeight < window.innerWidth) {
+                adjust = '24pt'
+              }
+              swiperActions.style.paddingBottom = adjust
+            }
+          }, 100)
         }
       }
     },
     computed: {
-      pictures () {
+      pictures() {
         return this.$store.getters.historyCurrent.metadata
       },
-      stream () {
+      stream() {
         return this.$store.getters.tilesData
       },
-      swiperState () {
+      swiperState() {
         return this.$store.getters.getSwiper
       },
-      swiperActive () {
+      swiperActive() {
         return this.swiperState.active
       },
-      swiperIsFav () {
+      swiperIsFav() {
         if (this.swiperActive) {
           return this.$store.getters.isFav(this.swiperCurrent.ou) !== -1
         }
       },
-      swiperCurrent () {
+      swiperCurrent() {
         let current = this.stream[this.swiperState.index]
         if (typeof current !== 'undefined') {
           return current
@@ -141,29 +145,37 @@
         }
       }
     },
-    mounted () {
+    mounted() {
       this.swiper = this.$refs.swiper.swiper
     },
-    destroyed () {
+    destroyed() {
       this.$store.dispatch('swiperIndex', 0)
     }
   }
 </script>
 <style scoped>
+
   .swiper-card-container {
     background-color: white;
   }
+
   .swiper-actions {
     background-color: #7b7594;
     width: 100%;
-    padding-bottom: 27px;
-    height: 12vh;
+    padding-bottom: 24pt;
+    position: fixed;
+    bottom: 0;
+    z-index: 201;
+    transition: all 200ms;
   }
+
   .slide {
     background-position: center;
     width: 100vw;
-    height: 88vh;
+    height: 85vh;
+    z-index: 200;
   }
+
   .liked {
     color: #26c6da !important;
   }

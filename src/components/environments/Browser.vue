@@ -47,9 +47,13 @@ export default {
   mounted () {
     if (iPhoneX()) {
       setTimeout(() => {
-        let actionBar = document.querySelector('.actionBar')
+        let actionBar = document.querySelector('.v-bottom-nav')
+        let adjust = '34pt'
+        if(window.innerHeight < window.innerWidth) {
+          adjust = '24pt'
+        }
         actionBar.style.height = 'unset'
-        actionBar.style.paddingBottom = '25px'
+        actionBar.style.paddingBottom = adjust
       }, 100)
     }
   }

@@ -55,7 +55,7 @@
     position: fixed;
   }
   .overlay-container {
-    z-index: 200;
+    z-index: 401;
   }
   .overlay-content {
     display: flex;
@@ -63,7 +63,7 @@
     align-items: center;
   }
   .overlay-background {
-    z-index: 199;
+    z-index: 400;
     background: rgba(209, 203, 224, 0.8);
     mix-blend-mode: hard-light;
   }

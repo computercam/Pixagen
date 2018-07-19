@@ -124,11 +124,6 @@
     color: #7b7292 !important;
   }
 
-  .toolbar,
-  .bottom-nav {
-    z-index: 100;
-  }
-
   body {
     padding-top: constant(safe-area-inset-top);
     padding-top: env(safe-area-inset-top);

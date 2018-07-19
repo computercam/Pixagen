@@ -13,42 +13,42 @@
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-facebook>
-              <span class="subheading dialog-social-name">Facebook</span>
+              <span @click="triggerShare($event)" class="subheading dialog-social-name">Facebook</span>
             </p>
             <p>
               <vue-goodshare-twitter 
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-twitter>
-              <span class="subheading dialog-social-name">Twitter</span>
+              <span @click="triggerShare($event)" class="subheading dialog-social-name">Twitter</span>
             </p>
             <p>
               <vue-goodshare-pinterest 
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-pinterest>
-              <span class="subheading dialog-social-name">Pinterest</span>
+              <span @click="triggerShare($event)" class="subheading dialog-social-name">Pinterest</span>
             </p>
             <p>
               <vue-goodshare-tumblr 
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-tumblr>
-              <span class="subheading dialog-social-name">Tumblr</span>
+              <span @click="triggerShare($event)" class="subheading dialog-social-name">Tumblr</span>
             </p>
             <p>
               <vue-goodshare-reddit 
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-reddit>
-              <span class="subheading dialog-social-name">Reddit</span>
+              <span @click="triggerShare($event)" class="subheading dialog-social-name">Reddit</span>
             </p>
             <p>
               <vue-goodshare-google-plus 
               :page_url="shareUrl" 
               has_icon 
               ></vue-goodshare-google-plus>
-              <span class="subheading dialog-social-name">GooglePlus</span>
+              <span @click="triggerShare($event)" class="subheading dialog-social-name">GooglePlus</span>
             </p>
           </v-card-text>
         </v-card>
@@ -68,6 +68,11 @@ export default {
   methods: {
     close () {
       this.$store.dispatch('shareDialogClose')
+    },
+    triggerShare (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.target.parentNode.firstChild.click()
     }
   },
   computed: {
@@ -97,16 +102,18 @@ export default {
 <style scoped>
 .dialog-container {
   padding: 0 8px;
+  border-radius: 10px !important;
 }
 .dialog-close {
   position: absolute !important;
-  top: 0px;
-  right: 0px;
+  top: 4px;
+  right: 4px;
 }
 .dialog-caption {
   padding: 0 16px;
 }
 .dialog-social-name {
   margin-left: 16px;
+  cursor: pointer;
 }
 </style>
