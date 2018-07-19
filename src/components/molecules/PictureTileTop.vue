@@ -115,7 +115,7 @@
   
   .btn-explore {
     float:right; 
-    margin: 4px; 
+    margin: 14px; 
     z-index: 21; 
   }
   

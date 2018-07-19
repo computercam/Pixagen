@@ -78,6 +78,7 @@ const actions = {
   },
   historyTimetravel ({ state, commit }, payload) {
     let temp = state.data[payload]
+    console.log(temp)
     commit('historyDelete', payload)
     commit('historyAdd', temp)
     router.push({

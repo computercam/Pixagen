@@ -75,7 +75,7 @@
 </script>
 <style>
   .results-container {
-    padding-top: 20px;
+    padding-top: 30px;
   }
   .results-header {
     margin-bottom: 24px;

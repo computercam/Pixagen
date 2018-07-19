@@ -6,7 +6,7 @@
           <v-subheader class="light-text">SEARCH HISTORY</v-subheader>
           <v-divider></v-divider>
           <template v-for="(item, index) in history">
-            <app-history-tile :item="item" :showDivider="index < history.length - 1"></app-history-tile>
+            <app-history-tile :item="item" :index="index" :showDivider="index < history.length - 1"></app-history-tile>
           </template>
         </v-list>
       </div>
