@@ -54,6 +54,6 @@ export default {
 </script>
 <style scoped>
   .liked-container {
-    padding-top: 20px !important;
+    padding-top: 30px !important;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-nav class="on-top" fixed :value="true" color="primary" :active.sync="state.selected">
+  <v-bottom-nav fixed class="on-top" :value="true" color="primary" :active.sync="state.selected">
     <v-btn v-for="item in state.items" :key="item.label" @click="nav(item.route)" :value="item.label" dark>
       <span :class="{highlight: state.selected === item.label}">{{ item.label }}</span>
       <v-icon color="accent">{{ item.icon }}</v-icon>

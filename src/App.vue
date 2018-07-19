@@ -70,7 +70,7 @@
   body {
     overflow-anchor: none !important;
   }
-
+  
   .app-background {
     background: #fafafa;
   }

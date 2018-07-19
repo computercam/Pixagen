@@ -74,10 +74,8 @@
   }
 </script>
 <style>
-  .results-container {
-    padding-top: 30px;
-  }
   .results-header {
+    padding-top: 25px !important;
     margin-bottom: 24px;
     margin-left: 4px;
   }
