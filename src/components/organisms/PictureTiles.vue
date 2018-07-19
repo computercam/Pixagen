@@ -129,7 +129,7 @@
           if (this.scrollY >= this.scrollEnd(200) && this.tilesLoading === false) {
             this.tilesLoading = true
             if (screen.width < 600) {
-              this.incrementor = 10
+              this.incrementor = 20
               this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
             } else {
               this.$store.dispatch('tilesAppend', { pictures: this.pictures })
@@ -164,7 +164,7 @@
         return show
       },
       progressCheck () {
-        if (this.moreButtonActive === false && this.stream.length < this.pictures.length) {
+        if (this.moreButtonActive === false) {
           return true
         } else {
           return false
@@ -189,7 +189,7 @@
     },
     mounted () {
       if (screen.width < 600) {
-        this.incrementor = 10
+        this.incrementor = 20
         this.$store.dispatch('tilesReset', { pictures: this.pictures, overide: this.incrementor })
       } else {
         this.incrementor = this.$store.getters.tilesIncrementor

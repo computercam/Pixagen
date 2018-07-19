@@ -1,7 +1,7 @@
 const state = {
   data: [],
-  increment: 15,
-  reset: 15,
+  increment: 25,
+  reset: 25,
   amount: 0,
 }
 

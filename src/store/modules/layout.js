@@ -21,8 +21,6 @@ const state = {
     350: 10
   },
   scroll: {
-    counter: 0,
-    counterEnd: 20,
     y: 0,
     cH: 0,
     sH: 0,
@@ -79,18 +77,10 @@ const actions = {
   onScroll ({ state, getters, commit, dispatch }, payload) {
     if (payload.y >= 0 && payload.y >= state.scroll.y) {
       commit('setScroll', { direction: 'down' })
-      if (state.scroll.counter < state.scroll.counterEnd) {
-        commit('setScrollCounter', 'down')
-      } else {
-        dispatch('setNavShow', false)
-      }
+      dispatch('setNavShow', false)
     } else {
       commit('setScroll', { direction: 'up' })
-      if (state.scroll.counter > 0) {
-        commit('setScrollCounter', 'up')
-      } else {
-        dispatch('setNavShow', true)
-      }
+      dispatch('setNavShow', true)
     }
     if (payload.y === 0) {
       dispatch('setNavShow', true)

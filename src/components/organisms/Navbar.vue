@@ -4,14 +4,10 @@
       <v-toolbar-title v-if="logo">
         <app-logo slot="activator" class="pointer" @click.native="quickGenerate()"></app-logo>
       </v-toolbar-title>
-      <v-icon class="pointer" v-else dark @click="back()">
-          keyboard_arrow_left
-      </v-icon>      
+      <v-toolbar-title v-else class="subheading">{{ title.toUpperCase() }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <app-menu v-if="menu"></app-menu>
-      <v-toolbar-title v-else class="subheading">
-          {{ title.toUpperCase() }}
-      </v-toolbar-title>
+      <v-icon  v-else class="pointer" dark @click="back()">close</v-icon> 
     </v-toolbar>
   </div>
 </template>
