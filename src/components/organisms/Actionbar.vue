@@ -29,11 +29,10 @@ export default {
 <style scoped>
   .bottom-nav-buffer {
     background-color: rgba(255, 255, 255, 0);
-    height: 40px;
+    height: 30px;
   }
   .on-top {
     z-index: 100 !important;
-    position: fixed;
     bottom: 0;
     width: 100%;
     transform: translateY(0%)

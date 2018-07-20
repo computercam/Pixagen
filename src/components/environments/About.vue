@@ -10,9 +10,9 @@
       <v-flex xs12>
           <section class="bio">
             <p class="body-1">Pixagen is a digital image exploration utility & creative inspiration catalyst.</p>
-            <p class="body-1">Pixagen was an idea born out of the desire to assist in brainstorming and creative thinking. The original concept was based Osbourne's creative checklist; <span class="checklist">Substitute, Combine, Adapt, Modify / Magnify, Purpose, Eliminate / Minify, Rearrange/ Reverse.</span></p>
+            <p class="body-1">Pixagen was an idea born out of the desire to assist in brainstorming and creative thinking. The original concept was based Osbourne's creative checklist.<span class="checklist">Substitute, Combine, Adapt, Modify / Magnify, Purpose, Eliminate / Minify, Rearrange/ Reverse.</span></p>
           </section>
-          <section class="credits">
+          <!-- <section class="credits">
             <strong>Credits:</strong>     
             <ul class="caption">
               <li>My Wife - Everything support</li>
@@ -21,7 +21,7 @@
               <li>Evan You - Vuejs is awesome</li>
               <li>Vuetify - Vuetify makes vue awesomer</li>
             </ul>
-          </section>
+          </section> -->
           <section class="feeback">
             <strong>Feedback</strong>
             <ul class="caption">

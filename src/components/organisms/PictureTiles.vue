@@ -1,6 +1,6 @@
 <template>
   <div>
-    <masonry :cols="columns" :gutter="gutter" :style="{ padding: margins, overflow: 'hidden' }" v-scroll="onScroll" v-resize="onResize">
+    <masonry class="masonry" :cols="columns" :gutter="gutter" :style="{ padding: margins, overflow: 'hidden' }" v-scroll="onScroll" v-resize="onResize">
       <app-picture-tile v-for="(item, index) in stream" :index="index" :incrementor="incrementor" :key="item.tu" :columns="columns" :item="item" :hover="showHover" :showExplore="item.rimg !== false"
         :showBottom="showBottom" :style="{ marginBottom: contentBuffer }" @click.native="fullscreenToggle(index, $event)">
       </app-picture-tile>
@@ -56,8 +56,9 @@
     },
     data () {
       return {
+        vContent: null,
         moreButtonActive: false,
-        tilesLoading: false,
+        tilesLoading: null,
         incrementor: 0,
         scrollY: 0
       }
@@ -72,7 +73,7 @@
           }
         }
       },
-      onResize () {
+      onResize (e) {
         this.$store.dispatch('onResize', window.innerWidth)
       },
       quickGenerate () {
@@ -89,10 +90,10 @@
         this.quickGenerate()
       },
       scrollEnd (num) {
-        return document.documentElement.scrollHeight - document.documentElement.clientHeight - num
+        return this.vContent.scrollHeight - this.vContent.clientHeight - num
       },
-      onScroll () {
-        this.scrollY = window.scrollY
+      onScroll (e) {
+        this.scrollY = e.target.scrollTop
       }
     },
     watch: {
@@ -126,23 +127,22 @@
       },
       scrollY () {
         if (this.stream.length < this.pictures.length) {
-          if (this.scrollY >= this.scrollEnd(200) && this.tilesLoading === false) {
-            this.tilesLoading = true
-            if (screen.width < 600) {
-              this.incrementor = 20
-              this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
-            } else {
-              this.$store.dispatch('tilesAppend', { pictures: this.pictures })
-            }
-            setTimeout(() => {
-              this.tilesLoading = false
-            }, 100)
+          if (this.scrollY >= this.scrollEnd(800)) {
+            clearTimeout(this.tilesLoading)
+            this.tilesLoading = setTimeout(() => {
+              if (screen.width < 600) {
+                this.incrementor = 17
+                this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
+              } else {
+                this.$store.dispatch('tilesAppend', { pictures: this.pictures })
+              }
+            }, 20)
           }
         }
         this.$store.dispatch('onScroll', {
-          y: window.scrollY,
-          cH: document.documentElement.clientHeight,
-          sH: document.documentElement.scrollHeight
+          y: this.vContent.scrollTop,
+          cH: this.vContent.clientHeight,
+          sH: this.vContent.scrollHeight
         })
       }
     },
@@ -180,16 +180,24 @@
         return this.$store.getters.layoutGutters
       },
       buttonBottomPadding () {
-        if (iPhoneX()) {
-          return '38px'
-        } else {
-          return '0px'
-        }
+        // if (iPhoneX()) {
+        //   return '38px'
+        // } else {
+        //   return '0px'
+        // }
       }
     },
     mounted () {
+      // Fix for chrome hitbox desync in fixed position elements
+      this.vContent = document.querySelector('.app-root')
+      this.vContent.addEventListener('scroll', (e) => {
+        this.onScroll(e)
+      })
+      this.vContent.addEventListener('resize', (e) => {
+        this.onResize(e)
+      })
       if (screen.width < 600) {
-        this.incrementor = 20
+        this.incrementor = 17
         this.$store.dispatch('tilesReset', { pictures: this.pictures, overide: this.incrementor })
       } else {
         this.incrementor = this.$store.getters.tilesIncrementor

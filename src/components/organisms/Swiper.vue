@@ -105,16 +105,16 @@
       swiperActive() {
         this.swiper.slideTo(this.swiperState.index, 0)
         if (this.swiperActive === true) {
-          setTimeout(() => {
-            let swiperActions = document.querySelector('.swiper-actions')
-            if (iPhoneX()) {
-              let adjust = '34pt'
-              if (window.innerHeight < window.innerWidth) {
-                adjust = '24pt'
-              }
-              swiperActions.style.paddingBottom = adjust
-            }
-          }, 100)
+          // setTimeout(() => {
+          //   let swiperActions = document.querySelector('.swiper-actions')
+          //   if (iPhoneX()) {
+          //     let adjust = '34pt'
+          //     if (window.innerHeight < window.innerWidth) {
+          //       adjust = '24pt'
+          //     }
+          //     swiperActions.style.paddingBottom = adjust
+          //   }
+          // }, 100)
         }
       }
     },

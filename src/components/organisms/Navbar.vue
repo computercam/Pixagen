@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar :color="color" :dense="!menu" fixed flat class="on-top">
+    <v-toolbar :color="color" :dense="!menu" flat class="on-top">
       <v-toolbar-title v-if="logo">
         <app-logo slot="activator" class="pointer" @click.native="quickGenerate()"></app-logo>
       </v-toolbar-title>
