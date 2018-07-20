@@ -108,9 +108,9 @@
           setTimeout(() => {
             let swiperActions = document.querySelector('.swiper-actions')
             if (iPhoneX()) {
-              let adjust = '34pt'
+              let adjust = '40pt'
               if (window.innerHeight < window.innerWidth) {
-                adjust = '24pt'
+                adjust = '30pt'
               }
               swiperActions.style.paddingBottom = adjust
             }

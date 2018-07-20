@@ -48,9 +48,9 @@ export default {
     if (iPhoneX()) {
       setTimeout(() => {
         let actionBar = document.querySelector('.v-bottom-nav')
-        let adjust = '34pt'
+        let adjust = '40pt'
         if(window.innerHeight < window.innerWidth) {
-          adjust = '24pt'
+          adjust = '30pt'
         }
         actionBar.style.height = 'unset'
         actionBar.style.paddingBottom = adjust

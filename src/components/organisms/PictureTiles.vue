@@ -57,7 +57,7 @@
     data () {
       return {
         moreButtonActive: false,
-        tilesLoading: false,
+        tilesLoading: null,
         incrementor: 0,
         scrollY: 0
       }
@@ -125,17 +125,16 @@
         }
       },
       scrollY () {
+        clearTimeout(this.tilesLoading)
         if (this.stream.length < this.pictures.length) {
-          if (this.scrollY >= this.scrollEnd(200) && this.tilesLoading === false) {
-            this.tilesLoading = true
-            if (screen.width < 600) {
-              this.incrementor = 20
-              this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
-            } else {
-              this.$store.dispatch('tilesAppend', { pictures: this.pictures })
-            }
-            setTimeout(() => {
-              this.tilesLoading = false
+          if (this.scrollY >= this.scrollEnd(600)) {
+            this.tilesLoading = setTimeout(() => {
+              if (screen.width < 600) {
+                this.incrementor = 21
+                this.$store.dispatch('tilesAppend', { pictures: this.pictures, overide: this.incrementor })
+              } else {
+                this.$store.dispatch('tilesAppend', { pictures: this.pictures })
+              }
             }, 100)
           }
         }
@@ -189,7 +188,7 @@
     },
     mounted () {
       if (screen.width < 600) {
-        this.incrementor = 20
+        this.incrementor = 21
         this.$store.dispatch('tilesReset', { pictures: this.pictures, overide: this.incrementor })
       } else {
         this.incrementor = this.$store.getters.tilesIncrementor
