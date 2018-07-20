@@ -29,6 +29,12 @@ export default {
   computed: {
     navShow () {
       return this.$store.getters.getNavShow
+    },
+    navbarsComputedHeight () {
+      return { 
+        top: document.querySelector('.navBar .v-toolbar').clientHeight,
+        bottom: document.querySelector('.actionBar .v-bottom-nav').clientHeight
+      }
     }
   },
   watch: {
@@ -45,6 +51,10 @@ export default {
     }
   },
   mounted () {
+    setTimeout(() => {
+      this.spaceTop = this.navbarsComputedHeight.top
+      this.spaceBottom = this.navbarsComputedHeight.bottom
+    }, 500)
     if (iPhoneX()) {
       setTimeout(() => {
         let actionBar = document.querySelector('.v-bottom-nav')
