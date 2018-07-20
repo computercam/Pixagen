@@ -13,8 +13,6 @@ import help from './modules/help'
 import swiper from './modules/swiper'
 import tiles from './modules/tiles'
 
-
-
 Vue.use(Vuex)
 export const store = new Vuex.Store({
   modules: {

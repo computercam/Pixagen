@@ -115,7 +115,7 @@ const actions = {
     }
   },
   setKeywordAmount ({ state, commit, dispatch }, payload) {
-   if (state.categories.unique && payload > state.categories.active.length) {
+    if (state.categories.unique && payload > state.categories.active.length) {
       dispatch('setSnackbar', {
         active: true,
         message: 'Try disabling unique categories or adding more active categories.',

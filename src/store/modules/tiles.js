@@ -2,7 +2,7 @@ const state = {
   data: [],
   increment: 25,
   reset: 25,
-  amount: 0,
+  amount: 0
 }
 
 const getters = {
@@ -16,8 +16,8 @@ const getters = {
 
 const actions = {
   tilesReset ({state, commit}, payload) {
-    commit('tilesAmount', { 
-      overide: payload.overide, 
+    commit('tilesAmount', {
+      overide: payload.overide,
       max: payload.pictures.length,
       reset: true
     })
@@ -27,8 +27,8 @@ const actions = {
   },
   tilesAppend ({ state, commit }, payload) {
     if (state.amount < payload.pictures.length) {
-      commit('tilesAmount', { 
-        overide: payload.overide, 
+      commit('tilesAmount', {
+        overide: payload.overide,
         max: payload.pictures.length,
         reset: false
       })

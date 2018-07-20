@@ -12,8 +12,6 @@ import 'animate.css/animate.min.css'
 import colors from 'vuetify/es5/util/colors'
 import VueMasonry from 'vue-masonry-css'
 
-
-
 Vue.use(Vuetify, { theme: {
   primary: '#7b7292',
   secondary: colors.deepPurple.accent1,

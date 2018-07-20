@@ -10,7 +10,7 @@ const state = {
   }
 }
 const getters = {
-  getSwiper(state) {
+  getSwiper (state) {
     return state
   }
 }

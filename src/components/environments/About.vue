@@ -36,7 +36,6 @@
 
 <script>
 import Logo from '../atoms/Logo'
-
 import Navbar from '../organisms/Navbar'
 
 export default {

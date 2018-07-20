@@ -93,8 +93,8 @@
 </template>
 
 <script>
-  import { routerHelpers } from '../../../router/routerHelpers.js'
   import Blank from '../../atoms/Blank'
+  import { routerHelpers } from '../../../router/routerHelpers.js'
   export default {
     mixins: [routerHelpers],
     components: {

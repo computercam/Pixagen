@@ -2,20 +2,64 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Landing from '@/components/environments/Landing'
-import About from '@/components/environments/About'
 import Help from '@/components/environments/Help'
-import Browser from '@/components/environments/Browser'
-import Settings from '@/components/environments/Settings'
 
-import BrowserResults from '@/components/ecosystems/Browser/Results'
-import BrowserLiked from '@/components/ecosystems/Browser/Liked'
-import BrowserGenerate from '@/components/ecosystems/Browser/Generate'
-import BrowserHistory from '@/components/ecosystems/Browser/History'
+const About = resolve => {
+  require.ensure(['../components/environments/About'], () => {
+    resolve(require('../components/environments/About'))
+  })
+}
+const Browser = resolve => {
+  require.ensure(['../components/environments/Browser'], () => {
+    resolve(require('../components/environments/Browser'))
+  })
+}
+const Settings = resolve => {
+  require.ensure(['../components/environments/Settings'], () => {
+    resolve(require('../components/environments/Settings'))
+  })
+}
+const BrowserResults = resolve => {
+  require.ensure(['../components/ecosystems/Browser/Results'], () => {
+    resolve(require('../components/ecosystems/Browser/Results'))
+  })
+}
+const BrowserLiked = resolve => {
+  require.ensure(['../components/ecosystems/Browser/Liked'], () => {
+    resolve(require('../components/ecosystems/Browser/Liked'))
+  })
+}
+const BrowserGenerate = resolve => {
+  require.ensure(['../components/ecosystems/Browser/Generate'], () => {
+    resolve(require('../components/ecosystems/Browser/Generate'))
+  })
+}
+const BrowserHistory = resolve => {
+  require.ensure(['../components/ecosystems/Browser/History'], () => {
+    resolve(require('../components/ecosystems/Browser/History'))
+  })
+}
 
-import SettingsGeneral from '@/components/ecosystems/Settings/General'
-import SettingsBlacklist from '@/components/ecosystems/Settings/Blacklist'
-import SettingsTranslate from '@/components/ecosystems/Settings/Translate'
-import SettingsCategories from '@/components/ecosystems/Settings/Categories'
+const SettingsGeneral = resolve => {
+  require.ensure(['../components/ecosystems/Settings/General'], () => {
+    resolve(require('../components/ecosystems/Settings/General'))
+  })
+}
+const SettingsBlacklist = resolve => {
+  require.ensure(['../components/ecosystems/Settings/Blacklist'], () => {
+    resolve(require('../components/ecosystems/Settings/Blacklist'))
+  })
+}
+const SettingsTranslate = resolve => {
+  require.ensure(['../components/ecosystems/Settings/Translate'], () => {
+    resolve(require('../components/ecosystems/Settings/Translate'))
+  })
+}
+const SettingsCategories = resolve => {
+  require.ensure(['../components/ecosystems/Settings/Categories'], () => {
+    resolve(require('../components/ecosystems/Settings/Categories'))
+  })
+}
 
 Vue.use(Router)
 
