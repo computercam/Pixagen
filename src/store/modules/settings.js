@@ -118,7 +118,7 @@ const actions = {
     if (state.categories.unique && payload > state.categories.active.length) {
       dispatch('setSnackbar', {
         active: true,
-        message: 'Try disabling unique categories or adding more active categories.',
+        message: 'Try disabling the unique categories setting or add more active categories.',
         color: 'error',
         mode: 'multi',
         timeout: 6000

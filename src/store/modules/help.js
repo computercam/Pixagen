@@ -1,4 +1,5 @@
 const state = {
+  tutorial: 'https://youtu.be/Uzk18DmrfwM',
   faq: [{
     title: 'How does it work?',
     paragraphs: ['This app generates a set of images using a keyword generator. The keywords generated are selected at random from a list topic categories. After a random set of images is generated, you can explore the ones you find interesting for related images and ideas. '
@@ -52,8 +53,8 @@ const state = {
 }
 
 const getters = {
-  getFaq (state) {
-    return state.faq
+  getHelpState (state) {
+    return state
   }
 }
 
