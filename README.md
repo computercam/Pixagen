@@ -16,6 +16,7 @@
 * User can create their own categories and add keywords to it
 * Add keyword translation feature for generation
 * Improve code quality and modularity of scraper API
+* Add pagination to scraper api
 * Add API support for other image indexes such as tumblr, behance and pinterest
 * Users can like keywords and categories to increase probability of usage
 * User can add likes to folders to organize their likes
